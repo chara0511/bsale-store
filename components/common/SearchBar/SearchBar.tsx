@@ -13,6 +13,7 @@ const SearchBar: FC = () => {
           <InputRightElement width="4.5rem">
             <IconButton
               aria-label="Search product"
+              variant="ghost"
               icon={<SearchIcon />}
             />
           </InputRightElement>

@@ -1,7 +1,13 @@
 import { FC } from 'react'
 
+import { ProductGrid } from '@/components/ui'
+
 const HomePage: FC = () => {
-  return <div>from index.tsx</div>
+  return (
+    <div>
+      <ProductGrid />
+    </div>
+  )
 }
 
 export default HomePage
