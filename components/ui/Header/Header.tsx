@@ -1,8 +1,9 @@
 import { FC } from 'react'
 import NextLink from 'next/link'
-import { Box, Flex, Link, Stack } from '@chakra-ui/layout'
+import { Box, Flex, Heading, Link, Stack } from '@chakra-ui/layout'
 
 import { SearchBar, UserBar } from '@/components/common'
+import { Image } from '@chakra-ui/image'
 
 const Header: FC = () => {
   return (
@@ -23,8 +24,23 @@ const Header: FC = () => {
       >
         <Box display="flex" justifyContent="center" alignItems="center">
           <NextLink href="/" passHref>
-            <Link fontWeight="medium">
-              BSale Store <small>test</small>
+            <Link display="flex" alignItems="center" fontWeight="medium">
+              <Image
+                w="84px"
+                h="36px"
+                src="https://dojiw2m9tvv09.cloudfront.net/16738/2/img-logos-web-bsale-naranjo.png?268"
+                alt="Bsale Logo"
+              />
+              <Heading
+                as="h4"
+                size="md"
+                lineHeight="tight"
+                w="fit-content"
+                color="blackAlpha.700"
+                isTruncated
+              >
+                Store
+              </Heading>
             </Link>
           </NextLink>
         </Box>

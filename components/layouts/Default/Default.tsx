@@ -16,6 +16,8 @@ const DefaultLayout: FC = ({ children }) => {
         centerContent
         maxW="full"
         minHeight="100vh"
+        px="1rem"
+        py="3rem"
       >
         {children}
       </Container>

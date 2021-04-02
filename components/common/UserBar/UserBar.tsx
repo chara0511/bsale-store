@@ -9,8 +9,7 @@ const UserBar: FC = () => {
     <Wrap>
       <WrapItem>
         <IconButton
-          borderRadius="full"
-          variant="unstyled"
+          variant="ghost"
           aria-label="Cart"
           icon={
             <BagIcon fill="none" stroke="currentColor" width="18" height="22" />
