@@ -1,19 +1,26 @@
 import { FC } from 'react'
 import Head from 'next/head'
-
-import { Footer, Header } from '@/components/common'
+import { Container } from '@chakra-ui/layout'
+import { Footer, Header } from '@/components/ui'
 
 const DefaultLayout: FC = ({ children }) => {
   return (
-    <div>
+    <>
       <Head>
         <title>BSALE Store - Test</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <div>{children}</div>
+      <Container
+        backgroundColor="gray.50"
+        centerContent
+        maxW="full"
+        minHeight="100vh"
+      >
+        {children}
+      </Container>
       <Footer />
-    </div>
+    </>
   )
 }
 

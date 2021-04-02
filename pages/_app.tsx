@@ -1,12 +1,15 @@
 import type { AppProps } from 'next/app'
-import '../styles/globals.css'
-import { DefaultLayout } from '@/components/ui'
+import { ChakraProvider } from '@chakra-ui/react'
+
+import { DefaultLayout } from '@/components/layouts'
 
 function MyApp ({ Component, pageProps }: AppProps): JSX.Element {
   return (
-    <DefaultLayout>
-      <Component {...pageProps} />
-    </DefaultLayout>
+    <ChakraProvider>
+      <DefaultLayout>
+        <Component {...pageProps} />
+      </DefaultLayout>
+    </ChakraProvider>
   )
 }
 
