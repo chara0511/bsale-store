@@ -6,8 +6,8 @@ import { SearchIcon } from '@chakra-ui/icons'
 
 const SearchBar: FC = () => {
   return (
-    <FormControl as="form" id="search" maxWidth="360px">
-      <FormLabel margin="auto" >
+    <FormControl as="form" id="search" maxWidth={['160px', '320px', '480px']}>
+      <FormLabel margin="auto">
         <InputGroup size="md">
           <Input pr="4.5rem" variant="filled" type="text" />
           <InputRightElement width="4.5rem">

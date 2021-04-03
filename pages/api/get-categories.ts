@@ -5,9 +5,7 @@ import { query } from '@/lib/db'
 const handler: NextApiHandler = async (_, res) => {
   try {
     const results = await query(`
-      SELECT * FROM product
-      ORDER BY id ASC
-      LIMIT 20
+      SELECT * FROM category
     `)
 
     return res.status(200).json(results)

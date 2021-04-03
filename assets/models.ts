@@ -1,4 +1,8 @@
-export interface Product {
+export interface CATEGORY {
+  id: number
+  name: string
+}
+export interface PRODUCT {
   id: number
   name: string
   url_image: string
