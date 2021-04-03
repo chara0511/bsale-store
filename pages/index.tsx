@@ -1,26 +1,50 @@
 import { FC } from 'react'
 
-import { Product } from '@/assets/models'
+import { CATEGORY, PRODUCT } from '@/assets/models'
 import { ProductGrid } from '@/components/ui'
-import { ProductCard } from '@/components/common'
-import { useProducts } from '@/lib/swr-hooks'
+import {
+  ProductCard,
+  ProductError,
+  ProductSkeleton
+} from '@/components/common'
+import { useEntries } from '@/lib/swr-hooks'
 
 const IndexPage: FC = () => {
-  const { products, isLoading } = useProducts()
+  const { data: products, isLoading: productsLoading } = useEntries(
+    '/api/get-products'
+  )
+  const { data: categories, isLoading: categoriesLoading } = useEntries(
+    '/api/get-categories'
+  )
 
-  if (isLoading) {
-    return <div>Loading...</div>
+  if (productsLoading || categoriesLoading) {
+    return (
+      <ProductGrid>
+        <ProductSkeleton />
+      </ProductGrid>
+    )
   }
 
-  console.log(products)
   return (
-    <div>
-      <ProductGrid>
-        {products.map((product: Product) => (
-          <ProductCard key={product.id} {...product} />
+    <>
+      <ul>
+        {categories.map((category: CATEGORY) => (
+          <li key={category.id}>{category.name}</li>
         ))}
-      </ProductGrid>
-    </div>
+      </ul>
+
+      {Array.isArray(products)
+        ? (
+        <ProductGrid>
+          {products.map((product: PRODUCT) => (
+            <ProductCard key={product.id} {...product} />
+          ))}
+        </ProductGrid>
+          )
+        : (
+        <ProductError {...products} />
+          )}
+    </>
   )
 }
 

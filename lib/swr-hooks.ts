@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import useSWR, { SWRResponse } from 'swr'
 
-interface Products {
-  products: any
+interface Data {
+  data: any
   isLoading: boolean
   isError: any
 }
@@ -11,11 +11,11 @@ const fetcher = async (url: string): Promise<any> => {
   return await window.fetch(url).then(async (res) => await res.json())
 }
 
-export const useProducts = (): Products => {
-  const { data, error } = useSWR('/api/get-products', fetcher)
+export const useEntries = (url: string): Data => {
+  const { data, error } = useSWR(url, fetcher)
 
   return {
-    products: data,
+    data,
     isLoading: !error && !data,
     isError: error
   }
