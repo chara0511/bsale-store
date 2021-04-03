@@ -17,7 +17,7 @@ const Header: FC = () => {
       <Flex
         alignItems="center"
         justifyContent="space-between"
-        maxW="1100px"
+        maxW="1280px"
         margin="0 auto"
         w="full"
         h="60px"
