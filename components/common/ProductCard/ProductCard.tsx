@@ -12,22 +12,9 @@ import {
 } from '@chakra-ui/layout'
 import { Image } from '@chakra-ui/image'
 
-interface Products {
-  id: number
-  name: string
-  url_image: string
-  price: number
-  discount: number
-  category: number
-}
+import { Product } from '@/assets/models'
 
-const ProductCard: FC<Products> = ({
-  id,
-  name,
-  url_image,
-  price,
-  category
-}) => {
+const ProductCard: FC<Product> = ({ id, name, url_image, price, category }) => {
   return (
     <NextLink href={`/${id}`}>
       <Link
@@ -38,13 +25,16 @@ const ProductCard: FC<Products> = ({
       >
         <Stack maxW="sm">
           <Image
-            src={url_image}
+            src={url_image === '' ? '/noimage.jpg' : url_image}
             alt={url_image}
-            w="300px"
-            h="380px"
+            w="260px"
+            h="340px"
             objectFit="contain"
             backgroundColor="white"
-            _hover={{ transform: 'scale(1.10)', transition: 'all .3s ease-in-out' }}
+            _hover={{
+              transform: 'scale(1.10)',
+              transition: 'all .3s ease-in-out'
+            }}
           />
 
           <Flex
@@ -62,15 +52,17 @@ const ProductCard: FC<Products> = ({
 
             <Heading
               fontWeight="semibold"
-              as="h4"
+              as="h3"
               size="md"
               lineHeight="tight"
               w="fit-content"
+              h="76px"
               mt={1}
               px={4}
               py={2}
               backgroundColor="blackAlpha.900"
-              isTruncated
+              display="flex"
+              alignItems="center"
             >
               {name}
             </Heading>
@@ -83,7 +75,6 @@ const ProductCard: FC<Products> = ({
               backgroundColor="blackAlpha.900"
               fontSize="sm"
               lineHeight="tight"
-              isTruncated
             >
               S/. {price}
             </Text>
