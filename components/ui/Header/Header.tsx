@@ -11,6 +11,7 @@ const Header: FC = () => {
       position="relative"
       backgroundColor="whiteAlpha.50"
       px={4}
+      py={2}
       w="full"
       boxShadow="sm"
     >
