@@ -12,9 +12,9 @@ import {
 } from '@chakra-ui/layout'
 import { Image } from '@chakra-ui/image'
 
-import { Product } from '@/assets/models'
+import { PRODUCT } from '@/assets/models'
 
-const ProductCard: FC<Product> = ({ id, name, url_image, price, category }) => {
+const ProductCard: FC<PRODUCT> = ({ id, name, url_image, price, category }) => {
   return (
     <NextLink href={`/${id}`}>
       <Link
@@ -51,8 +51,11 @@ const ProductCard: FC<Product> = ({ id, name, url_image, price, category }) => {
             </Box>
 
             <Heading
-              fontWeight="semibold"
               as="h3"
+              display="flex"
+              fontWeight="semibold"
+              alignItems="center"
+              backgroundColor="blackAlpha.900"
               size="md"
               lineHeight="tight"
               w="fit-content"
@@ -60,9 +63,6 @@ const ProductCard: FC<Product> = ({ id, name, url_image, price, category }) => {
               mt={1}
               px={4}
               py={2}
-              backgroundColor="blackAlpha.900"
-              display="flex"
-              alignItems="center"
             >
               {name}
             </Heading>
