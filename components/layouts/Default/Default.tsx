@@ -12,12 +12,12 @@ const DefaultLayout: FC = ({ children }) => {
       </Head>
       <Header />
       <Container
+        as="main"
         backgroundColor="gray.50"
         centerContent
         maxW="full"
         minHeight="100vh"
-        px="1rem"
-        py="3rem"
+        p="1rem"
       >
         {children}
       </Container>

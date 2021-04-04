@@ -1,3 +1,4 @@
+export { default as Menu } from './Menu'
 export { default as ProductCard } from './ProductCard'
 export { default as ProductError } from './ProductError'
 export { default as ProductSkeleton } from './ProductSkeleton'

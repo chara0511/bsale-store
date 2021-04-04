@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { FC } from 'react'
 import { useRouter } from 'next/router'
+import { Box, Center } from '@chakra-ui/layout'
 
 import { PRODUCT } from '@/assets/models'
 import {
+  Menu,
   ProductCard,
   ProductError,
   ProductSkeleton
@@ -19,17 +21,23 @@ const SearchPage: FC = () => {
 
   const { pathname, category } = useSearchMeta(asPath)
 
-  const { data: products, isLoading } = useEntries('/api/get-products', q)
+  const { data: products, isLoading: porductsFilteredLoading } = useEntries(
+    '/api/get-products',
+    q
+  )
+  const { data: categories, isLoading: categoriesLoading } = useEntries(
+    '/api/get-categories'
+  )
 
   console.log({ asPath, pathname, category })
 
-  if (isLoading) {
+  if (porductsFilteredLoading || categoriesLoading) {
     return (
       <>
         {q && (
-          <span>
-            Searching for: "<strong>{q}</strong>"
-          </span>
+          <Box as="span" p={2} mb={2}>
+            Buscando: "<strong>{q}</strong>"
+          </Box>
         )}
         <ProductGrid>
           <ProductSkeleton />
@@ -39,15 +47,18 @@ const SearchPage: FC = () => {
   }
 
   return (
-    <>
-      <span>
+    <Center flexDirection="column" w="full" maxW="1280px" position="relative">
+      <Box as="span" p={2} mb={2}>
         Mostrando {products.length} resultados{' '}
         {q && (
           <>
             para "<strong>{q}</strong>"
           </>
         )}
-      </span>
+      </Box>
+
+      <Menu name="categorias" items={categories} />
+
       {Array.isArray(products)
         ? (
         <ProductGrid>
@@ -59,7 +70,7 @@ const SearchPage: FC = () => {
         : (
         <ProductError {...products} />
           )}
-    </>
+    </Center>
   )
 }
 
