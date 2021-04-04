@@ -1,16 +1,15 @@
 import { FC } from 'react'
-import NextLink from 'next/link'
-import { Heading } from '@chakra-ui/layout'
+import { Center } from '@chakra-ui/layout'
 
-import { CATEGORY, PRODUCT } from '@/assets/models'
+import { PRODUCT } from '@/assets/models'
 import { ProductGrid } from '@/components/ui'
 import {
+  Menu,
   ProductCard,
   ProductError,
   ProductSkeleton
 } from '@/components/common'
 import { useEntries } from '@/lib/swr-hooks'
-import { getCategoryPath } from '@/lib/get-category-path'
 
 const IndexPage: FC = () => {
   const { data: products, isLoading: productsLoading } = useEntries(
@@ -29,33 +28,8 @@ const IndexPage: FC = () => {
   }
 
   return (
-    <>
-      <ul>
-        <Heading
-          fontWeight="semibold"
-          as="h4"
-          size="md"
-          lineHeight="tight"
-          mt={1}
-          px={4}
-          py={2}
-          display="flex"
-          alignItems="center"
-        >
-          Categorias
-        </Heading>
-        {categories.map((category: CATEGORY) => (
-          <li key={category.id}>
-            <NextLink
-              href={{
-                pathname: getCategoryPath(category.name)
-              }}
-            >
-              <a>{category.name}</a>
-            </NextLink>
-          </li>
-        ))}
-      </ul>
+    <Center w="full" maxW="1280px" position="relative">
+      <Menu name="categorias" items={categories} />
 
       {Array.isArray(products)
         ? (
@@ -68,7 +42,7 @@ const IndexPage: FC = () => {
         : (
         <ProductError {...products} />
           )}
-    </>
+    </Center>
   )
 }
 

@@ -8,20 +8,22 @@ import { Image } from '@chakra-ui/image'
 const Header: FC = () => {
   return (
     <Stack
+      as="header"
       position="relative"
       backgroundColor="whiteAlpha.50"
-      px={4}
-      py={2}
       w="full"
       boxShadow="sm"
     >
       <Flex
+        as="nav"
         alignItems="center"
         justifyContent="space-between"
         maxW="1280px"
         margin="0 auto"
         w="full"
         h="60px"
+        px={4}
+        py={2}
       >
         <Box display="flex" justifyContent="center" alignItems="center">
           <NextLink href="/" passHref>
