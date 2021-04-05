@@ -9,9 +9,10 @@ const Header: FC = () => {
   return (
     <Stack
       as="header"
-      position="relative"
+      position="fixed"
+      zIndex={99}
       alignItems="center"
-      backgroundColor="whiteAlpha.50"
+      backgroundColor="white"
       w="full"
       boxShadow="sm"
       px={4}

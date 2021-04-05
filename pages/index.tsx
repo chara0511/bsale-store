@@ -4,7 +4,6 @@ import { Center } from '@chakra-ui/layout'
 import { PRODUCT } from '@/assets/models'
 import { ProductGrid } from '@/components/ui'
 import {
-  Menu,
   ProductCard,
   ProductError,
   ProductSkeleton
@@ -15,11 +14,8 @@ const IndexPage: FC = () => {
   const { data: products, isLoading: productsLoading } = useEntries(
     '/api/get-products'
   )
-  const { data: categories, isLoading: categoriesLoading } = useEntries(
-    '/api/get-categories'
-  )
 
-  if (productsLoading || categoriesLoading) {
+  if (productsLoading) {
     return (
       <ProductGrid>
         <ProductSkeleton />
@@ -28,9 +24,7 @@ const IndexPage: FC = () => {
   }
 
   return (
-    <Center w="full" maxW="1280px" position="relative">
-      <Menu name="categorias" items={categories} />
-
+    <Center w="full" maxW="1280px">
       {Array.isArray(products)
         ? (
         <ProductGrid>

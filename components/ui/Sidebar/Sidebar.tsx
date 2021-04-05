@@ -33,7 +33,7 @@ const Sidebar: FC = () => {
         isOpen={isOpen}
         placement="right"
         onClose={onClose}
-        size="md"
+        size="sm"
         finalFocusRef={btnRef}
       >
         <DrawerOverlay>
