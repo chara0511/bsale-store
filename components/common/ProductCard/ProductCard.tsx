@@ -24,7 +24,7 @@ const ProductCard: FC<PRODUCT> = ({ id, name, url_image, price }) => {
       position="relative"
       borderRadius="sm"
     >
-      <NextLink href={`/product/${id}`}>
+      <NextLink href={`/products/${id}`}>
         <Link>
           <ScaleFade initialScale={0.9} in={isOpen}>
             <Stack maxW="sm">
@@ -81,6 +81,7 @@ const ProductCard: FC<PRODUCT> = ({ id, name, url_image, price }) => {
           </ScaleFade>
         </Link>
       </NextLink>
+
       <IconButton
         onClick={() => console.log('added')}
         position="absolute"
@@ -90,6 +91,13 @@ const ProductCard: FC<PRODUCT> = ({ id, name, url_image, price }) => {
         borderRadius="none"
         color="whiteAlpha.900"
         variant="ghost"
+        _hover={{
+          backgroundColor: 'blackAlpha.800'
+        }}
+        _active={{
+          transform: 'scale(0.95)',
+          backgroundColor: 'blackAlpha.800'
+        }}
         aria-label="Add cart"
         icon={
           <BagIcon fill="none" stroke="currentColor" width="18" height="22" />

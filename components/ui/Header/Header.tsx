@@ -10,9 +10,12 @@ const Header: FC = () => {
     <Stack
       as="header"
       position="relative"
+      alignItems="center"
       backgroundColor="whiteAlpha.50"
       w="full"
       boxShadow="sm"
+      px={4}
+      py={2}
     >
       <Flex
         as="nav"
@@ -21,9 +24,7 @@ const Header: FC = () => {
         maxW="1280px"
         margin="0 auto"
         w="full"
-        h="60px"
-        px={4}
-        py={2}
+        h={['40px', '50px', '60px']}
       >
         <Box display="flex" justifyContent="center" alignItems="center">
           <NextLink href="/" passHref>
@@ -52,6 +53,8 @@ const Header: FC = () => {
 
         <UserBar />
       </Flex>
+
+      <SearchBar isResponsive />
     </Stack>
   )
 }

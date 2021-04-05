@@ -12,34 +12,35 @@ import {
   ProductSkeleton
 } from '@/components/common'
 import { ProductGrid } from '@/components/ui'
-import { useSearchMeta } from '@/lib/hooks'
 import { useEntries } from '@/lib/swr-hooks'
 
-const SearchPage: FC = () => {
+const CategoryPage: FC = () => {
   const router = useRouter()
-  const { asPath } = router
-  const { q }: any = router.query
+  const { name }: any = router.query
 
-  const { pathname, category } = useSearchMeta(asPath)
+  const {
+    data: productsByCategory,
+    isLoading: productsByCategoryLoading
+  } = useEntries('/api/get-categories', name)
 
-  const { data: products, isLoading: productsFilteredLoading } = useEntries(
-    '/api/get-products',
-    q
-  )
   const { data: categories, isLoading: categoriesLoading } = useEntries(
     '/api/get-categories'
   )
 
-  console.log({ products, categories, pathname, category })
+  console.log({
+    name,
+    productsByCategory,
+    productsByCategoryLoading
+  })
 
-  if (productsFilteredLoading) {
+  if (productsByCategoryLoading) {
     return (
       <Center flexDirection="column" w="full" maxW="1280px" position="relative">
-        {q && (
+        {name && (
           <Box as="span" p={2} mb={2}>
-            Buscando: "
-            <Text as="strong" fontWeight="bold">
-              {q}
+            Buscando productos por categoría: "
+            <Text as="strong" fontWeight="bold" textTransform="capitalize">
+              {name}
             </Text>
             "
           </Box>
@@ -61,33 +62,28 @@ const SearchPage: FC = () => {
   return (
     <Center flexDirection="column" w="full" maxW="1280px" position="relative">
       <Box as="span" p={2} mb={2}>
-        Mostrando {products.length} resultados{' '}
-        {q && (
-          <>
-            para "
-            <Text as="strong" fontWeight="bold">
-              {q}
-            </Text>
-            "
-          </>
-        )}
+        Mostrando {productsByCategory.length} resultados por categoría "
+        <Text as="strong" fontWeight="bold" textTransform="capitalize">
+          {name}
+        </Text>
+        "
       </Box>
 
       <Menu name="categorias" items={categories} />
 
-      {Array.isArray(products)
+      {Array.isArray(productsByCategory)
         ? (
         <ProductGrid>
-          {products.map((product: PRODUCT) => (
+          {productsByCategory.map((product: PRODUCT) => (
             <ProductCard key={product.id} {...product} />
           ))}
         </ProductGrid>
           )
         : (
-        <ProductError {...products} />
+        <ProductError {...productsByCategory} />
           )}
     </Center>
   )
 }
 
-export default SearchPage
+export default CategoryPage
