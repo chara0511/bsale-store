@@ -5,7 +5,7 @@ import { Input, InputGroup, InputRightElement } from '@chakra-ui/input'
 import { IconButton } from '@chakra-ui/button'
 import { SearchIcon } from '@chakra-ui/icons'
 
-const SearchBar: FC = () => {
+const SearchBar: FC<{ isResponsive?: boolean }> = ({ isResponsive = false }) => {
   const router = useRouter()
   const [search, setSearch] = useState({ query: '' })
 
@@ -33,7 +33,8 @@ const SearchBar: FC = () => {
       as="form"
       id="search"
       onSubmit={handleSubmit}
-      maxWidth={['160px', '320px', '480px']}
+      maxWidth="480px"
+      display={isResponsive ? ['block', 'block', 'none'] : ['none', 'none', 'block']}
     >
       <FormLabel margin="auto">
         <InputGroup size="md">

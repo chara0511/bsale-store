@@ -9,19 +9,21 @@ const handler: NextApiHandler = async (req, res) => {
     if (q !== undefined) {
       const results = await query(
         `
-        SELECT * FROM product
-        WHERE name REGEXP '${String(q)}' 
-      `
+          SELECT * FROM product
+          WHERE name REGEXP '${String(q)}' 
+        `
       )
 
       return res.status(200).json(results)
     }
 
-    const results = await query(`
-      SELECT * FROM product
-      ORDER BY id ASC
-      LIMIT 20
-    `)
+    const results = await query(
+      `
+        SELECT * FROM product
+        ORDER BY id ASC
+        LIMIT 20
+      `
+    )
 
     return res.status(200).json(results)
   } catch (error) {
