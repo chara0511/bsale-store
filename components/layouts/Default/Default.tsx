@@ -3,24 +3,44 @@ import Head from 'next/head'
 import { Container } from '@chakra-ui/layout'
 import { Footer, Header } from '@/components/ui'
 
+import { Menu, MenuSkeleton } from '@/components/common'
+import { useEntries } from '@/lib/swr-hooks'
+
 const DefaultLayout: FC = ({ children }) => {
+  const { data: categories, isLoading } = useEntries('/api/get-categories')
+
   return (
     <>
       <Head>
         <title>BSALE Store - Test</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <Header />
+
       <Container
         as="main"
         backgroundColor="gray.50"
         centerContent
         maxW="full"
         minHeight="100vh"
-        p="1rem"
+        py={['7rem', '7rem', '5rem']}
+        px="1rem"
+        position="relative"
       >
+        {isLoading
+          ? (
+          <MenuSkeleton />
+            )
+          : (
+          <>
+            <Menu name="categorias" items={categories} />
+            <Menu name="categorias" items={categories} isResponsive />
+          </>
+            )}
         {children}
       </Container>
+
       <Footer />
     </>
   )

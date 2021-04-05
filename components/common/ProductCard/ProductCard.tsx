@@ -30,6 +30,7 @@ const ProductCard: FC<PRODUCT> = ({ id, name, url_image, price }) => {
             <Stack maxW="sm">
               <Image
                 src={url_image === '' ? '/noimage.jpg' : url_image}
+                fallbackSrc="/loadingimage.png"
                 alt={url_image}
                 w="260px"
                 h="340px"

@@ -5,8 +5,6 @@ import { Box, Center, Text } from '@chakra-ui/layout'
 
 import { PRODUCT } from '@/assets/models'
 import {
-  Menu,
-  MenuSkeleton,
   ProductCard,
   ProductError,
   ProductSkeleton
@@ -18,22 +16,18 @@ const CategoryPage: FC = () => {
   const router = useRouter()
   const { name }: any = router.query
 
-  const {
-    data: productsByCategory,
-    isLoading: productsByCategoryLoading
-  } = useEntries('/api/get-categories', name)
-
-  const { data: categories, isLoading: categoriesLoading } = useEntries(
-    '/api/get-categories'
+  const { data: productsByCategory, isLoading } = useEntries(
+    '/api/get-categories',
+    name
   )
 
   console.log({
     name,
     productsByCategory,
-    productsByCategoryLoading
+    isLoading
   })
 
-  if (productsByCategoryLoading) {
+  if (isLoading) {
     return (
       <Center flexDirection="column" w="full" maxW="1280px" position="relative">
         {name && (
@@ -45,13 +39,6 @@ const CategoryPage: FC = () => {
             "
           </Box>
         )}
-        {categoriesLoading
-          ? (
-          <MenuSkeleton />
-            )
-          : (
-          <Menu name="categorias" items={categories} />
-            )}
         <ProductGrid>
           <ProductSkeleton />
         </ProductGrid>
@@ -68,8 +55,6 @@ const CategoryPage: FC = () => {
         </Text>
         "
       </Box>
-
-      <Menu name="categorias" items={categories} />
 
       {Array.isArray(productsByCategory)
         ? (

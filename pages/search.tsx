@@ -5,8 +5,6 @@ import { Box, Center, Text } from '@chakra-ui/layout'
 
 import { PRODUCT } from '@/assets/models'
 import {
-  Menu,
-  MenuSkeleton,
   ProductCard,
   ProductError,
   ProductSkeleton
@@ -26,17 +24,15 @@ const SearchPage: FC = () => {
     '/api/get-products',
     q
   )
-  const { data: categories, isLoading: categoriesLoading } = useEntries(
-    '/api/get-categories'
-  )
 
-  console.log({ products, categories, pathname, category })
+  // * remove this
+  console.log({ pathname, category })
 
   if (productsFilteredLoading) {
     return (
-      <Center flexDirection="column" w="full" maxW="1280px" position="relative">
+      <Center flexDirection="column" w="full" maxW="1280px">
         {q && (
-          <Box as="span" p={2} mb={2}>
+          <Box as="span" p={2} mb={4}>
             Buscando: "
             <Text as="strong" fontWeight="bold">
               {q}
@@ -44,13 +40,7 @@ const SearchPage: FC = () => {
             "
           </Box>
         )}
-        {categoriesLoading
-          ? (
-          <MenuSkeleton />
-            )
-          : (
-          <Menu name="categorias" items={categories} />
-            )}
+
         <ProductGrid>
           <ProductSkeleton />
         </ProductGrid>
@@ -59,8 +49,8 @@ const SearchPage: FC = () => {
   }
 
   return (
-    <Center flexDirection="column" w="full" maxW="1280px" position="relative">
-      <Box as="span" p={2} mb={2}>
+    <Center flexDirection="column" w="full" maxW="1280px">
+      <Box as="span" p={2} mb={4}>
         Mostrando {products.length} resultados{' '}
         {q && (
           <>
@@ -72,8 +62,6 @@ const SearchPage: FC = () => {
           </>
         )}
       </Box>
-
-      <Menu name="categorias" items={categories} />
 
       {Array.isArray(products)
         ? (
