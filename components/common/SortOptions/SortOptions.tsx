@@ -1,16 +1,20 @@
 import React, { FC } from 'react'
 import { useRouter } from 'next/router'
 import NextLink from 'next/link'
-import { List, ListItem } from '@chakra-ui/layout'
+import { Link, List, ListItem } from '@chakra-ui/layout'
 
 import { useSearchMeta } from '@/lib/hooks'
+
+interface Props {
+  onClose?: () => void
+}
 
 const SORT = Object.entries({
   asc: 'Precio: Bajo a alto',
   desc: 'Precio: Alto a bajo'
 })
 
-const SortOptions: FC = () => {
+const SortOptions: FC<Props> = ({ onClose }) => {
   const router = useRouter()
   const { asPath } = router
   const { q } = router.query
@@ -28,7 +32,7 @@ const SortOptions: FC = () => {
         lineHeight="tight"
       >
         <NextLink href={{ pathname, query: { q } }}>
-          <a>Ordenar</a>
+          <Link onClick={onClose}>Ordenar</Link>
         </NextLink>
       </ListItem>
 
@@ -40,7 +44,7 @@ const SortOptions: FC = () => {
               query: { q, sort: key }
             }}
           >
-            <a>{text}</a>
+            <Link onClick={onClose}>{text}</Link>
           </NextLink>
         </ListItem>
       ))}

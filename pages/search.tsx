@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Box, Center, Text } from '@chakra-ui/layout'
 
@@ -9,14 +9,22 @@ import {
   ProductError,
   ProductSkeleton
 } from '@/components/common'
-import { ProductGrid } from '@/components/ui'
+import { Paginator, ProductGrid } from '@/components/ui'
 import { useEntries } from '@/lib/swr-hooks'
+
+const PER_PAGE: number = 15
 
 const SearchPage: FC = () => {
   const router = useRouter()
   const { q, sort }: any = router.query
 
-  const { data: products, isLoading } = useEntries('/api/get-products', q, sort)
+  const { data: products, isLoading } = useEntries(
+    '/api/get-products',
+    q,
+    sort
+  )
+
+  const [pageCount, setPageCount] = useState(0)
 
   if (isLoading) {
     return (
@@ -56,9 +64,11 @@ const SearchPage: FC = () => {
       {Array.isArray(products)
         ? (
         <ProductGrid>
-          {products.map((product: PRODUCT) => (
-            <ProductCard key={product.id} {...product} />
-          ))}
+          {products
+            .slice(pageCount, pageCount + PER_PAGE)
+            .map((product: PRODUCT) => (
+              <ProductCard key={product.id} {...product} />
+            ))}
         </ProductGrid>
           )
         : (
@@ -69,6 +79,12 @@ const SearchPage: FC = () => {
           </ProductGrid>
         </>
           )}
+
+      <Paginator
+        products={products}
+        pageCount={setPageCount}
+        perPage={PER_PAGE}
+      />
     </Center>
   )
 }
