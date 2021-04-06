@@ -15,8 +15,8 @@ const ProductError: FC<{ message: string }> = ({ message }) => {
       alignItems="center"
       justifyContent="center"
       textAlign="center"
-      maxW="400px"
-      h="400px"
+      maxW="500px"
+      h="200px"
     >
       <AlertIcon boxSize="40px" mr={0} />
       <AlertTitle mt={4} mb={1} fontSize="lg">

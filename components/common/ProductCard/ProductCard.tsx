@@ -75,7 +75,7 @@ const ProductCard: FC<PRODUCT> = ({ id, name, url_image, price }) => {
                   fontSize="sm"
                   lineHeight="tight"
                 >
-                  S/. {price}
+                  $ {price}
                 </Text>
               </Flex>
             </Stack>

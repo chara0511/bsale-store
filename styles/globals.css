@@ -1,0 +1,41 @@
+ul {
+  list-style: none; /* Remove list bullets */
+  padding: 0;
+  margin: 0;
+}
+
+.pages {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 2.5rem;
+  user-select: none;
+}
+
+.pagination > li {
+  margin-right: 12px;
+}
+
+.pagination > li > a {
+  border: 2px solid #010001;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+  color: #010001;
+  cursor: pointer;
+}
+
+.pagination > li > a:hover {
+  border: 2px solid #333333;
+  background-color: #333333;
+  color: whitesmoke !important;
+}
+
+.active > a {
+  border: 1px solid yellowgreen;
+  background-color: #010001;
+  color: whitesmoke !important;
+}

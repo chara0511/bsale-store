@@ -3,14 +3,37 @@ import { NextApiHandler } from 'next'
 import { query } from '@/lib/db'
 
 const handler: NextApiHandler = async (req, res) => {
-  const { q } = req.query
+  const { q, sort } = req.query
 
   try {
+    if (q !== undefined && sort !== undefined) {
+      const results = await query(
+        `
+          SELECT * FROM product
+          WHERE name REGEXP '${String(q)}'
+          ORDER BY price ${String(sort)}
+        `
+      )
+
+      return res.status(200).json(results)
+    }
+
+    if (sort !== undefined) {
+      const results = await query(
+        `
+          SELECT * FROM product
+          ORDER BY price ${String(sort)}
+        `
+      )
+
+      return res.status(200).json(results)
+    }
+
     if (q !== undefined) {
       const results = await query(
         `
           SELECT * FROM product
-          WHERE name REGEXP '${String(q)}' 
+          WHERE name REGEXP '${String(q)}'
         `
       )
 
@@ -21,7 +44,6 @@ const handler: NextApiHandler = async (req, res) => {
       `
         SELECT * FROM product
         ORDER BY id ASC
-        LIMIT 20
       `
     )
 

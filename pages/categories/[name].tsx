@@ -14,24 +14,19 @@ import { useEntries } from '@/lib/swr-hooks'
 
 const CategoryPage: FC = () => {
   const router = useRouter()
-  const { name }: any = router.query
+  const { name, sort }: any = router.query
 
   const { data: productsByCategory, isLoading } = useEntries(
     '/api/get-categories',
-    name
-  )
-
-  console.log({
     name,
-    productsByCategory,
-    isLoading
-  })
+    sort
+  )
 
   if (isLoading) {
     return (
-      <Center flexDirection="column" w="full" maxW="1280px" position="relative">
+      <Center flexDirection="column" w="full" maxW="1280px" textAlign="center">
         {name && (
-          <Box as="span" p={2} mb={2}>
+          <Box as="span" p={2} mb={4}>
             Buscando productos por categoría: "
             <Text as="strong" fontWeight="bold" textTransform="capitalize">
               {name}
@@ -47,8 +42,8 @@ const CategoryPage: FC = () => {
   }
 
   return (
-    <Center flexDirection="column" w="full" maxW="1280px" position="relative">
-      <Box as="span" p={2} mb={2}>
+    <Center flexDirection="column" w="full" maxW="1280px" textAlign="center">
+      <Box as="span" p={2} mb={4}>
         Mostrando {productsByCategory.length} resultados por categoría "
         <Text as="strong" fontWeight="bold" textTransform="capitalize">
           {name}
@@ -65,7 +60,12 @@ const CategoryPage: FC = () => {
         </ProductGrid>
           )
         : (
-        <ProductError {...productsByCategory} />
+        <>
+          <ProductError {...productsByCategory} />
+          <ProductGrid>
+            <ProductSkeleton />
+          </ProductGrid>
+        </>
           )}
     </Center>
   )

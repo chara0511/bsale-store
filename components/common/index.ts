@@ -1,7 +1,7 @@
-export { default as Menu } from './Menu'
 export { default as MenuSkeleton } from './MenuSkeleton'
 export { default as ProductCard } from './ProductCard'
 export { default as ProductError } from './ProductError'
 export { default as ProductSkeleton } from './ProductSkeleton'
 export { default as SearchBar } from './SearchBar'
+export { default as SortOptions } from './SortOptions'
 export { default as UserBar } from './UserBar'
