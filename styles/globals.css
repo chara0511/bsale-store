@@ -26,6 +26,7 @@ ul {
   border-radius: 2px;
   color: #010001;
   cursor: pointer;
+  font-weight: 600;
 }
 
 .pagination > li > a:hover {

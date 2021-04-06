@@ -120,7 +120,7 @@ const Menu: FC<{ name: string, items: CATEGORY[], isResponsive?: boolean }> = ({
                     ))}
                   </List>
 
-                  <SortOptions />
+                  <SortOptions onClose={onClose}/>
                 </DrawerBody>
               </DrawerContent>
             </DrawerOverlay>

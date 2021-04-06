@@ -1,10 +1,9 @@
 import { FC, useState } from 'react'
 import { useRouter } from 'next/router'
-import ReactPaginate from 'react-paginate'
 import { Center } from '@chakra-ui/layout'
 
 import { PRODUCT } from '@/assets/models'
-import { ProductGrid } from '@/components/ui'
+import { Paginator, ProductGrid } from '@/components/ui'
 import {
   ProductCard,
   ProductError,
@@ -18,13 +17,13 @@ const IndexPage: FC = () => {
   const router = useRouter()
   const { q, sort }: any = router.query
 
-  const { data: products, isLoading } = useEntries('/api/get-products', q, sort)
+  const { data: products, isLoading } = useEntries(
+    '/api/get-products',
+    q,
+    sort
+  )
 
   const [pageCount, setPageCount] = useState(0)
-
-  const handlePageClick = (data: { selected: number }): void => {
-    setPageCount(data.selected * PER_PAGE)
-  }
 
   if (isLoading) {
     return (
@@ -55,17 +54,10 @@ const IndexPage: FC = () => {
         </>
           )}
 
-      <ReactPaginate
-        previousLabel="<"
-        nextLabel=">"
-        breakLabel="..."
-        breakClassName="break-me"
-        pageCount={Math.ceil(products?.length / PER_PAGE)}
-        marginPagesDisplayed={1}
-        pageRangeDisplayed={1}
-        onPageChange={handlePageClick}
-        containerClassName="pages pagination"
-        activeClassName="active"
+      <Paginator
+        products={products}
+        pageCount={setPageCount}
+        perPage={PER_PAGE}
       />
     </Center>
   )

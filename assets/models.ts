@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react'
+
 export interface CATEGORY {
   id: number
   name: string
@@ -13,4 +15,10 @@ export interface PRODUCT {
   price: number
   discount: number
   category: number
+}
+
+export interface PAGINATE {
+  products: PRODUCT[]
+  pageCount: Dispatch<SetStateAction<number>>
+  perPage: number
 }
