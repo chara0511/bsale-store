@@ -36,7 +36,7 @@ ul {
 }
 
 .active > a {
-  border: 1px solid yellowgreen;
+  border: 12px solid #010001;
   background-color: #010001;
   color: whitesmoke !important;
 }

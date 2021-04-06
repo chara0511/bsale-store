@@ -7,7 +7,7 @@ import { PRODUCT } from '@/assets/models'
 import {
   ProductCard,
   ProductError,
-  ProductSkeleton
+  ProductsSkeleton
 } from '@/components/common'
 import { ProductGrid } from '@/components/ui'
 import { useEntries } from '@/lib/swr-hooks'
@@ -35,7 +35,7 @@ const CategoryPage: FC = () => {
           </Box>
         )}
         <ProductGrid>
-          <ProductSkeleton />
+          <ProductsSkeleton />
         </ProductGrid>
       </Center>
     )
@@ -63,7 +63,7 @@ const CategoryPage: FC = () => {
         <>
           <ProductError {...productsByCategory} />
           <ProductGrid>
-            <ProductSkeleton />
+            <ProductsSkeleton />
           </ProductGrid>
         </>
           )}

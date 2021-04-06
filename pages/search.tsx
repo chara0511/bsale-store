@@ -7,7 +7,7 @@ import { PRODUCT } from '@/assets/models'
 import {
   ProductCard,
   ProductError,
-  ProductSkeleton
+  ProductsSkeleton
 } from '@/components/common'
 import { Paginator, ProductGrid } from '@/components/ui'
 import { useEntries } from '@/lib/swr-hooks'
@@ -40,7 +40,7 @@ const SearchPage: FC = () => {
         )}
 
         <ProductGrid>
-          <ProductSkeleton />
+          <ProductsSkeleton />
         </ProductGrid>
       </Center>
     )
@@ -75,7 +75,7 @@ const SearchPage: FC = () => {
         <>
           <ProductError {...products} />
           <ProductGrid>
-            <ProductSkeleton />
+            <ProductsSkeleton />
           </ProductGrid>
         </>
           )}
