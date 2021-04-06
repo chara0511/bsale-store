@@ -1,34 +1,112 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">BSale Store <small><i>test</i></small></h1>
 
-## Getting Started
+<div align="center">
+  <h2>
+    <a href="https://bsale-store.vercel.app/" target="_blank" >
+      Demo
+    </a>
+  </h2>
+</div>
 
-First, run the development server:
+<!-- TABLE OF CONTENTS -->
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## 🔥 Table of Contents
+
+- [Overview](#overview)
+  - [Built With](#built-with)
+- [Features](#features)
+- [How to use](#how-to-use)
+- [Contact](#contact)
+- [Acknowledgements](#acknowledgements)
+
+<!-- OVERVIEW -->
+
+## Overview
+
+<details>
+  <summary>💻 Desktop version</summary>
+
+![screenshot](public/desktop-version.png)
+![screenshot](public/desktop-version2.png)
+
+</details>
+
+<details>
+  <summary>📱 Mobile version</summary>
+
+![screenshot](public/mobile-version.png)
+![screenshot](public/mobile-version2.png)
+
+</details>
+
+### Built With
+
+- [Javascript](https://developer.mozilla.org/es/docs/Web/JavaScript)
+- [Nextjs](https://nextjs.org/)
+- [React](https://reactjs.org/)
+- [Chakra-ui](https://chakra-ui.com/)
+- [CSS](https://developer.mozilla.org/es/docs/Web/CSS)
+- [SWR](https://swr.vercel.app/)
+- [MySQL](https://www.mysql.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+
+## Features
+
+This is a project bootstrapped with , was created as a submission to a challenge. The [challenge](https://devchallenges.io/challenges/f4NJ53rcfgrP6sBMD2jt) was to build an application to complete the given user stories.
+
+This is a [Next.js](https://nextjs.org/) project that started with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app), which was created as a challenge post to [BSale](https://www.bsale.com.pe/). The challenge consisted in creating a BSale store (test) that displays products, filtered products and grouped by category to which they belong from a database.
+
+## How To Use
+
+### Step 1. Getting Started
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+```bash
+# Clone this repository
+$ git clone https://github.com/jcarlos0511/bsale-store.git
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+# Enter the created folder
+$ cd bsale-store
 
-## Learn More
+# Install dependencies
+$ yarn install
 
-To learn more about Next.js, take a look at the following resources:
+# Run the app
+$ yarn dev
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Visit http://localhost:3000/
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Step 2. Set up a MySQL database
 
-## Deploy on Vercel
+Set up a MySQL server either locally or any cloud provider.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Step 3. Set up environment variables
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Copy the `env.local.example` file in this directory to `.env.local` (which will be ignored by Git):
+
+```bash
+cp .env.local.example .env.local
+```
+
+Set each variable on `.env.local`:
+
+- `MYSQL_HOST` - Your MySQL host URL.
+- `MYSQL_DATABASE` - The name of the MySQL database you want to use.
+- `MYSQL_USERNAME` - The name of the MySQL user with access to database.
+- `MYSQL_PASSWORD` - The passowrd of the MySQL user.
+
+## Acknowledgements
+
+- [Next.js examples - GitHub](https://github.com/vercel/next.js/tree/canary/examples)
+- [React TypeScript Cheatsheets](https://react-typescript-cheatsheet.netlify.app/)
+- [MySQLTutorial](https://www.mysqltutorial.org/)
+- [Marked - a markdown parser](https://github.com/chjj/marked)
+
+## Contact
+
+- GitHub [@jcarlos0511](https://github.com/jcarlos0511)
+- Twitter [@jncarloschara](https://twitter.com/jncarlos0511)
