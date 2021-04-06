@@ -3,11 +3,22 @@ import { NextApiHandler } from 'next'
 import { query } from '@/lib/db'
 
 const handler: NextApiHandler = async (req, res) => {
-  const {
-    query: { q }
-  } = req
+  const { q, sort } = req.query
 
   try {
+    if (q !== undefined && sort !== undefined) {
+      const results = await query(
+        `
+          SELECT * FROM category 
+          INNER JOIN product ON category.id = product.category
+          WHERE category.name = '${String(q)}'
+          ORDER BY price ${String(sort)}
+        `
+      )
+
+      return res.status(200).json(results)
+    }
+
     if (q !== undefined) {
       const results = await query(
         `

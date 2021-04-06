@@ -10,29 +10,19 @@ import {
   ProductSkeleton
 } from '@/components/common'
 import { ProductGrid } from '@/components/ui'
-import { useSearchMeta } from '@/lib/hooks'
 import { useEntries } from '@/lib/swr-hooks'
 
 const SearchPage: FC = () => {
   const router = useRouter()
-  const { asPath } = router
-  const { q }: any = router.query
+  const { q, sort }: any = router.query
 
-  const { pathname, category } = useSearchMeta(asPath)
+  const { data: products, isLoading } = useEntries('/api/get-products', q, sort)
 
-  const { data: products, isLoading: productsFilteredLoading } = useEntries(
-    '/api/get-products',
-    q
-  )
-
-  // * remove this
-  console.log({ pathname, category })
-
-  if (productsFilteredLoading) {
+  if (isLoading) {
     return (
       <Center flexDirection="column" w="full" maxW="1280px">
         {q && (
-          <Box as="span" p={2} mb={4}>
+          <Box as="span" p={2} mb={4} textAlign="center">
             Buscando: "
             <Text as="strong" fontWeight="bold">
               {q}
@@ -50,7 +40,7 @@ const SearchPage: FC = () => {
 
   return (
     <Center flexDirection="column" w="full" maxW="1280px">
-      <Box as="span" p={2} mb={4}>
+      <Box as="span" p={2} mb={4} textAlign="center">
         Mostrando {products.length} resultados{' '}
         {q && (
           <>
@@ -72,7 +62,12 @@ const SearchPage: FC = () => {
         </ProductGrid>
           )
         : (
-        <ProductError {...products} />
+        <>
+          <ProductError {...products} />
+          <ProductGrid>
+            <ProductSkeleton />
+          </ProductGrid>
+        </>
           )}
     </Center>
   )

@@ -1,9 +1,9 @@
 import { FC } from 'react'
 import Head from 'next/head'
 import { Container } from '@chakra-ui/layout'
-import { Footer, Header } from '@/components/ui'
 
-import { Menu, MenuSkeleton } from '@/components/common'
+import { MenuSkeleton } from '@/components/common'
+import { Footer, Header, Menu } from '@/components/ui'
 import { useEntries } from '@/lib/swr-hooks'
 
 const DefaultLayout: FC = ({ children }) => {
@@ -28,15 +28,17 @@ const DefaultLayout: FC = ({ children }) => {
         px="1rem"
         position="relative"
       >
-        {isLoading
+        {isLoading && <MenuSkeleton />}
+
+        {Array.isArray(categories)
           ? (
-          <MenuSkeleton />
-            )
-          : (
           <>
             <Menu name="categorias" items={categories} />
             <Menu name="categorias" items={categories} isResponsive />
           </>
+            )
+          : (
+          <MenuSkeleton />
             )}
         {children}
       </Container>

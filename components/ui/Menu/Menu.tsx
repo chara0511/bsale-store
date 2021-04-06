@@ -20,6 +20,7 @@ import {
 import { HamburgerIcon } from '@chakra-ui/icons'
 
 import { CATEGORY } from '@/assets/models'
+import { SortOptions } from '@/components/common'
 import { getCategoryPath } from '@/lib/get-category-path'
 
 const Menu: FC<{ name: string, items: CATEGORY[], isResponsive?: boolean }> = ({
@@ -48,9 +49,7 @@ const Menu: FC<{ name: string, items: CATEGORY[], isResponsive?: boolean }> = ({
             borderWidth="1px"
             borderColor="gray.300"
             borderStyle="solid"
-            icon={
-              <HamburgerIcon w="22px" h="22px" />
-            }
+            icon={<HamburgerIcon w="22px" h="22px" />}
           />
 
           <Drawer
@@ -73,7 +72,7 @@ const Menu: FC<{ name: string, items: CATEGORY[], isResponsive?: boolean }> = ({
                       <Image
                         w="84px"
                         h="36px"
-                        src="https://dojiw2m9tvv09.cloudfront.net/16738/2/img-logos-web-bsale-naranjo.png?268"
+                        src="/logo.png"
                         alt="Bsale Logo"
                       />
                       <Heading
@@ -109,7 +108,7 @@ const Menu: FC<{ name: string, items: CATEGORY[], isResponsive?: boolean }> = ({
                     </ListItem>
 
                     {items.map((item) => (
-                      <ListItem key={item.id} textTransform="capitalize">
+                      <ListItem key={item.id} textTransform="capitalize" ml={4}>
                         <NextLink
                           href={{
                             pathname: getCategoryPath(item.name)
@@ -120,6 +119,8 @@ const Menu: FC<{ name: string, items: CATEGORY[], isResponsive?: boolean }> = ({
                       </ListItem>
                     ))}
                   </List>
+
+                  <SortOptions />
                 </DrawerBody>
               </DrawerContent>
             </DrawerOverlay>
@@ -127,42 +128,55 @@ const Menu: FC<{ name: string, items: CATEGORY[], isResponsive?: boolean }> = ({
         </>
           )
         : (
-        <Box
-          display={['none', 'none', 'none', 'block']}
-          position="fixed"
-          top={24}
-          left={8}
-          zIndex={99}
-        >
-          <List spacing={2}>
-            <ListItem
-              fontWeight="semibold"
-              fontSize="xl"
-              textTransform="capitalize"
-              lineHeight="tight"
-            >
-              <NextLink
-                href={{
-                  pathname: '/search'
-                }}
+        <>
+          <Box
+            display={['none', 'none', 'none', 'block']}
+            position="fixed"
+            top={24}
+            left={8}
+            zIndex={99}
+          >
+            <List spacing={2}>
+              <ListItem
+                fontWeight="semibold"
+                fontSize="xl"
+                textTransform="capitalize"
+                lineHeight="tight"
               >
-                <Link> {name}</Link>
-              </NextLink>
-            </ListItem>
-
-            {items.map((item) => (
-              <ListItem key={item.id} textTransform="capitalize">
                 <NextLink
                   href={{
-                    pathname: getCategoryPath(item.name)
+                    pathname: '/search'
                   }}
                 >
-                  <Link> {item.name}</Link>
+                  <Link> {name}</Link>
                 </NextLink>
               </ListItem>
-            ))}
-          </List>
-        </Box>
+
+              {items.map((item) => (
+                <ListItem key={item.id} textTransform="capitalize" ml={[4, 4, 4, 0]}>
+                  <NextLink
+                    href={{
+                      pathname: getCategoryPath(item.name)
+                    }}
+                  >
+                    <Link> {item.name}</Link>
+                  </NextLink>
+                </ListItem>
+              ))}
+            </List>
+          </Box>
+
+          {/* ORDENAR */}
+          <Box
+            display={['none', 'none', 'none', 'block']}
+            position="fixed"
+            top={24}
+            right={8}
+            zIndex={99}
+          >
+            <SortOptions />
+          </Box>
+        </>
           )}
     </>
   )

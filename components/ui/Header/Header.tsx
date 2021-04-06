@@ -33,7 +33,7 @@ const Header: FC = () => {
               <Image
                 w="84px"
                 h="36px"
-                src="https://dojiw2m9tvv09.cloudfront.net/16738/2/img-logos-web-bsale-naranjo.png?268"
+                src="/logo.png"
                 alt="Bsale Logo"
               />
               <Heading
