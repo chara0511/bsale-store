@@ -7,7 +7,7 @@ import { Paginator, ProductGrid } from '@/components/ui'
 import {
   ProductCard,
   ProductError,
-  ProductSkeleton
+  ProductsSkeleton
 } from '@/components/common'
 import { useEntries } from '@/lib/swr-hooks'
 
@@ -28,7 +28,7 @@ const IndexPage: FC = () => {
   if (isLoading) {
     return (
       <ProductGrid>
-        <ProductSkeleton />
+        <ProductsSkeleton />
       </ProductGrid>
     )
   }
@@ -49,7 +49,7 @@ const IndexPage: FC = () => {
         <>
           <ProductError {...products} />
           <ProductGrid>
-            <ProductSkeleton />
+            <ProductsSkeleton />
           </ProductGrid>
         </>
           )}

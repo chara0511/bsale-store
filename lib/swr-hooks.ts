@@ -32,3 +32,13 @@ export const useEntries = (
     isError: error
   }
 }
+
+export const useEntry = (url: string, id: string): Data => {
+  const { data, error } = useSWR(`${url}?id=${id}`, fetcher)
+
+  return {
+    data,
+    isLoading: !error && !data,
+    isError: error
+  }
+}
