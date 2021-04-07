@@ -52,8 +52,6 @@
 
 ## Features
 
-This is a project bootstrapped with , was created as a submission to a challenge. The [challenge](https://devchallenges.io/challenges/f4NJ53rcfgrP6sBMD2jt) was to build an application to complete the given user stories.
-
 This is a [Next.js](https://nextjs.org/) project that started with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app), which was created as a challenge post to [BSale](https://www.bsale.com.pe/). The challenge consisted in creating a BSale store (test) that displays products, filtered products and grouped by category to which they belong from a database.
 
 ## How To Use

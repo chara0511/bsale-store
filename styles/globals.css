@@ -1,5 +1,5 @@
 ul {
-  list-style: none; /* Remove list bullets */
+  list-style: none;
   padding: 0;
   margin: 0;
 }
@@ -32,11 +32,20 @@ ul {
 .pagination > li > a:hover {
   border: 2px solid #333333;
   background-color: #333333;
-  color: whitesmoke !important;
+  color: whitesmoke;
+}
+
+.pagination > li > a:active {
+  transform: scale(0.95);
 }
 
 .active > a {
-  border: 12px solid #010001;
-  background-color: #010001;
+  border: 2px solid #010001;
+  background-color: #010001 !important;
   color: whitesmoke !important;
+}
+
+.active > a:hover {
+  background-color: #010001;
+  border: 2px solid #010001;
 }

@@ -29,9 +29,9 @@ const ProductCard: FC<PRODUCT> = ({ id, name, url_image, price }) => {
           <ScaleFade initialScale={0.9} in={isOpen}>
             <Stack maxW="sm">
               <Image
-                src={url_image === '' ? '/noimage.jpg' : url_image}
+                src={url_image === '' || url_image === null ? '/noimage.jpg' : url_image}
                 fallbackSrc="/loadingimage.png"
-                alt={url_image}
+                alt={`${name} product`}
                 w="260px"
                 h="340px"
                 objectFit="contain"
@@ -83,7 +83,9 @@ const ProductCard: FC<PRODUCT> = ({ id, name, url_image, price }) => {
         </Link>
       </NextLink>
 
+      {/* Add product in cart */}
       <IconButton
+        aria-label="Agregar al carrito"
         onClick={() => console.log('added')}
         position="absolute"
         top={0}
@@ -99,7 +101,6 @@ const ProductCard: FC<PRODUCT> = ({ id, name, url_image, price }) => {
           transform: 'scale(0.95)',
           backgroundColor: 'blackAlpha.800'
         }}
-        aria-label="Add cart"
         icon={
           <BagIcon fill="none" stroke="currentColor" width="18" height="22" />
         }
