@@ -29,7 +29,6 @@ const ProductPage: FC = () => {
     )
   }
 
-  console.log(product)
   return (
     <Center
       my={4}

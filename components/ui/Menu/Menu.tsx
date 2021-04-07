@@ -23,9 +23,9 @@ import { CATEGORY } from '@/assets/models'
 import { SortOptions } from '@/components/common'
 import { getCategoryPath } from '@/lib/get-category-path'
 
-const Menu: FC<{ name: string, items: CATEGORY[], isResponsive?: boolean }> = ({
+const Menu: FC<{ name: string, categories: CATEGORY[], isResponsive?: boolean }> = ({
   name,
-  items,
+  categories,
   isResponsive
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -36,6 +36,7 @@ const Menu: FC<{ name: string, items: CATEGORY[], isResponsive?: boolean }> = ({
       {isResponsive ?? false
         ? (
         <>
+         {/* MOBILE / TABLET */}
           <IconButton
             position="fixed"
             top={36}
@@ -72,7 +73,7 @@ const Menu: FC<{ name: string, items: CATEGORY[], isResponsive?: boolean }> = ({
                       <Image
                         w="84px"
                         h="36px"
-                        src="/logo.png"
+                        src="https://dojiw2m9tvv09.cloudfront.net/16738/2/img-logos-web-bsale-naranjo.png?268"
                         alt="Bsale Logo"
                       />
                       <Heading
@@ -91,7 +92,9 @@ const Menu: FC<{ name: string, items: CATEGORY[], isResponsive?: boolean }> = ({
                 <Divider orientation="horizontal" />
 
                 <DrawerBody>
-                  <List spacing={2}>
+
+                  {/* CATEGORIAS */}
+                  <List spacing={2} mt={4}>
                     <ListItem
                       fontWeight="semibold"
                       fontSize="xl"
@@ -107,20 +110,21 @@ const Menu: FC<{ name: string, items: CATEGORY[], isResponsive?: boolean }> = ({
                       </NextLink>
                     </ListItem>
 
-                    {items.map((item) => (
-                      <ListItem key={item.id} textTransform="capitalize" ml={4}>
+                    {categories.map((cat) => (
+                      <ListItem key={cat.id} textTransform="capitalize" ml={4}>
                         <NextLink
                           href={{
-                            pathname: getCategoryPath(item.name)
+                            pathname: getCategoryPath(cat.name)
                           }}
                         >
-                          <Link onClick={onClose}> {item.name}</Link>
+                          <Link onClick={onClose}> {cat.name}</Link>
                         </NextLink>
                       </ListItem>
                     ))}
                   </List>
 
-                  <SortOptions onClose={onClose}/>
+                  {/* ORDENAR */}
+                  <SortOptions closeMenu={onClose}/>
                 </DrawerBody>
               </DrawerContent>
             </DrawerOverlay>
@@ -129,6 +133,8 @@ const Menu: FC<{ name: string, items: CATEGORY[], isResponsive?: boolean }> = ({
           )
         : (
         <>
+          {/* DESKTOP */}
+          {/* CATEGORIAS */}
           <Box
             display={['none', 'none', 'none', 'block']}
             position="fixed"
@@ -136,7 +142,7 @@ const Menu: FC<{ name: string, items: CATEGORY[], isResponsive?: boolean }> = ({
             left={8}
             zIndex={99}
           >
-            <List spacing={2}>
+            <List spacing={2} mt={4}>
               <ListItem
                 fontWeight="semibold"
                 fontSize="xl"
@@ -152,14 +158,14 @@ const Menu: FC<{ name: string, items: CATEGORY[], isResponsive?: boolean }> = ({
                 </NextLink>
               </ListItem>
 
-              {items.map((item) => (
-                <ListItem key={item.id} textTransform="capitalize" ml={[4, 4, 4, 0]}>
+              {categories.map((cat) => (
+                <ListItem key={cat.id} textTransform="capitalize" ml={[4, 4, 4, 0]}>
                   <NextLink
                     href={{
-                      pathname: getCategoryPath(item.name)
+                      pathname: getCategoryPath(cat.name)
                     }}
                   >
-                    <Link> {item.name}</Link>
+                    <Link> {cat.name}</Link>
                   </NextLink>
                 </ListItem>
               ))}

@@ -22,7 +22,7 @@ const ProductSkeleton: FC = () => {
         justifyContent="space-around"
         height="475px"
         w="full"
-        maxWidth="400px"
+         maxWidth={['400px', '400px', '300px', '350px']}
       >
         <Skeleton w="380px" h="64px" />
 

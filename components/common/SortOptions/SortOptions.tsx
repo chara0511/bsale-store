@@ -6,7 +6,7 @@ import { Link, List, ListItem } from '@chakra-ui/layout'
 import { useSearchMeta } from '@/lib/hooks'
 
 interface Props {
-  onClose?: () => void
+  closeMenu?: () => void
 }
 
 const SORT = Object.entries({
@@ -14,7 +14,7 @@ const SORT = Object.entries({
   desc: 'Precio: Alto a bajo'
 })
 
-const SortOptions: FC<Props> = ({ onClose }) => {
+const SortOptions: FC<Props> = ({ closeMenu }) => {
   const router = useRouter()
   const { asPath } = router
   const { q } = router.query
@@ -24,27 +24,26 @@ const SortOptions: FC<Props> = ({ onClose }) => {
   console.log({ pathname, category })
 
   return (
-    <List spacing={2}>
+    <List spacing={2} mt={4}>
       <ListItem
         fontWeight="semibold"
         fontSize="xl"
-        textTransform="capitalize"
         lineHeight="tight"
       >
         <NextLink href={{ pathname, query: { q } }}>
-          <Link onClick={onClose}>Ordenar</Link>
+          <Link onClick={closeMenu}>Ordenar</Link>
         </NextLink>
       </ListItem>
 
       {SORT.map(([key, text]) => (
-        <ListItem key={key} textTransform="capitalize" ml={[4, 4, 4, 0]}>
+        <ListItem key={key} ml={[4, 4, 4, 0]}>
           <NextLink
             href={{
               pathname,
               query: { q, sort: key }
             }}
           >
-            <Link onClick={onClose}>{text}</Link>
+            <Link onClick={closeMenu}>{text}</Link>
           </NextLink>
         </ListItem>
       ))}

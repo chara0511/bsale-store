@@ -1,31 +1,41 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 
 import { Box, Flex, Heading, Text } from '@chakra-ui/layout'
 import { Image } from '@chakra-ui/image'
 
 import { PRODUCT } from '@/assets/models'
 import { Button } from '@chakra-ui/button'
+import { useDisclosure } from '@chakra-ui/hooks'
+import { Fade } from '@chakra-ui/transition'
 
 const ProductView: FC<PRODUCT> = ({ name, url_image, price }) => {
+  const { isOpen, onToggle } = useDisclosure()
+
+  useEffect(() => {
+    onToggle()
+  }, [])
+
   return (
     <>
-      <Box borderWidth="1px" overflow="hidden" position="relative">
-        <Image
-          src={url_image === '' ? '/noimage.jpg' : url_image}
-          fallbackSrc="/loadingimage.png"
-          alt={`producto ${name}`}
-          w="full"
-          maxW="300px"
-          height="475px"
-          objectFit="contain"
-          backgroundColor="white"
-          _hover={{
-            transform: 'scale(1.10)',
-            transition: 'all .3s ease-in-out'
-          }}
-        />
-      </Box>
+      <Fade in={isOpen}>
+        <Box borderWidth="1px" overflow="hidden" position="relative">
+          <Image
+            src={url_image === '' ? '/noimage.jpg' : url_image}
+            fallbackSrc="/loadingimage.png"
+            alt={`producto ${name}`}
+            w="full"
+            maxW="300px"
+            height="475px"
+            objectFit="contain"
+            backgroundColor="white"
+            _hover={{
+              transform: 'scale(1.10)',
+              transition: 'all .3s ease-in-out'
+            }}
+          />
+        </Box>
+      </Fade>
 
       <Flex
         mx={8}
@@ -33,12 +43,12 @@ const ProductView: FC<PRODUCT> = ({ name, url_image, price }) => {
         justifyContent="space-around"
         height="475px"
         w="full"
-        maxWidth={['400px', '400px', '350px']}
+        maxWidth={['400px', '400px', '300px', '350px']}
       >
         <Heading
           as="h1"
           display="flex"
-          fontWeight="semibold"
+          fontWeight="bold"
           alignItems="center"
           size="lg"
           lineHeight="tight"
@@ -49,7 +59,7 @@ const ProductView: FC<PRODUCT> = ({ name, url_image, price }) => {
 
         <Heading
           as="h2"
-          fontWeight="semibold"
+          fontWeight="bold"
           w="fit-content"
           size="md"
           lineHeight="tight"
@@ -75,7 +85,14 @@ const ProductView: FC<PRODUCT> = ({ name, url_image, price }) => {
           borderRadius="sm"
           color="whiteAlpha.900"
           backgroundColor="blackAlpha.900"
-          aria-label="Add cart"
+          aria-label="Agregar al carrito"
+          _hover={{
+            backgroundColor: 'blackAlpha.800'
+          }}
+          _active={{
+            transform: 'scale(0.95)',
+            backgroundColor: 'blackAlpha.800'
+          }}
         >
           Agregar al Carrito
         </Button>
