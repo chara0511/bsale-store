@@ -29,7 +29,11 @@ const ProductCard: FC<PRODUCT> = ({ id, name, url_image, price }) => {
           <ScaleFade initialScale={0.9} in={isOpen}>
             <Stack maxW="sm">
               <Image
-                src={url_image === '' || url_image === null ? '/noimage.jpg' : url_image}
+                src={
+                  url_image === '' || url_image === null
+                    ? '/noimage.jpg'
+                    : url_image
+                }
                 fallbackSrc="/loadingimage.png"
                 alt={`${name} product`}
                 w="260px"
@@ -83,7 +87,7 @@ const ProductCard: FC<PRODUCT> = ({ id, name, url_image, price }) => {
         </Link>
       </NextLink>
 
-      {/* Add product in cart */}
+      {/* Button para agregar el producto al carrito */}
       <IconButton
         aria-label="Agregar al carrito"
         onClick={() => console.log('added')}

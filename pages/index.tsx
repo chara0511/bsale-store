@@ -32,7 +32,7 @@ const IndexPage: FC = () => {
       </ProductGrid>
     )
   }
-
+  console.log(products)
   return (
     <Center w="full" maxW="1280px" flexDirection="column">
       {Array.isArray(products)

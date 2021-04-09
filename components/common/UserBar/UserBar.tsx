@@ -1,13 +1,13 @@
 import { FC } from 'react'
 import { Wrap, WrapItem } from '@chakra-ui/layout'
 
-import { Sidebar } from '@/components/ui'
+import { Cart } from '@/components/common'
 
 const UserBar: FC = () => {
   return (
     <Wrap>
       <WrapItem>
-        <Sidebar />
+        <Cart />
       </WrapItem>
     </Wrap>
   )
