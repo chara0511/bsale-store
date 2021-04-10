@@ -3,12 +3,12 @@ import { useRouter } from 'next/router'
 import { Center } from '@chakra-ui/layout'
 
 import { PRODUCT } from '@/assets/models'
-import { Paginator, ProductGrid } from '@/components/ui'
 import {
   ProductCard,
-  ProductError,
-  ProductsSkeleton
+  ProductCardSkeleton,
+  ProductError
 } from '@/components/common'
+import { Paginator, ProductGrid } from '@/components/ui'
 import { useEntries } from '@/lib/swr-hooks'
 
 const PER_PAGE: number = 15
@@ -28,7 +28,7 @@ const IndexPage: FC = () => {
   if (isLoading) {
     return (
       <ProductGrid>
-        <ProductsSkeleton />
+        <ProductCardSkeleton />
       </ProductGrid>
     )
   }
@@ -49,7 +49,7 @@ const IndexPage: FC = () => {
         <>
           <ProductError {...products} />
           <ProductGrid>
-            <ProductsSkeleton />
+            <ProductCardSkeleton />
           </ProductGrid>
         </>
           )}

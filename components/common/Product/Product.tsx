@@ -5,11 +5,12 @@ import { Box, Flex, Heading, Text } from '@chakra-ui/layout'
 import { Image } from '@chakra-ui/image'
 
 import { PRODUCT } from '@/assets/models'
-import { Button } from '@chakra-ui/button'
 import { useDisclosure } from '@chakra-ui/hooks'
 import { Fade } from '@chakra-ui/transition'
 
-const ProductView: FC<PRODUCT> = ({ name, url_image, price }) => {
+import { PrimaryButton } from '@/components/button'
+
+const Product: FC<PRODUCT> = ({ name, url_image, price }) => {
   const { isOpen, onToggle } = useDisclosure()
 
   useEffect(() => {
@@ -77,28 +78,13 @@ const ProductView: FC<PRODUCT> = ({ name, url_image, price }) => {
           </Text>
         </Box>
 
-        <Button
-          w="full"
-          mx="auto"
-          maxW="300px"
-          h="58px"
-          borderRadius="sm"
-          color="whiteAlpha.900"
-          backgroundColor="blackAlpha.900"
-          aria-label="Agregar al carrito"
-          _hover={{
-            backgroundColor: 'blackAlpha.800'
-          }}
-          _active={{
-            transform: 'scale(0.95)',
-            backgroundColor: 'blackAlpha.800'
-          }}
-        >
-          Agregar al Carrito
-        </Button>
+        <PrimaryButton
+          name="Agregar al Carrito"
+          handler={() => console.log('Agregar producto al carrito')}
+        />
       </Flex>
     </>
   )
 }
 
-export default ProductView
+export default Product

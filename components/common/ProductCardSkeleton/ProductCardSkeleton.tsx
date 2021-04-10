@@ -3,7 +3,7 @@ import { Skeleton } from '@chakra-ui/skeleton'
 
 const items = [1, 2, 3, 4, 5, 6]
 
-const ProductsSkeleton: FC = () => {
+const ProductCardSkeleton: FC = () => {
   return (
     <>
       {items.map((item) => (
@@ -21,4 +21,4 @@ const ProductsSkeleton: FC = () => {
   )
 }
 
-export default ProductsSkeleton
+export default ProductCardSkeleton

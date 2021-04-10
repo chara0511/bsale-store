@@ -31,7 +31,7 @@ const SearchBar: FC<{ isResponsive?: boolean }> = ({ isResponsive = false }) => 
   return (
     <FormControl
       as="form"
-      id="search"
+      id={isResponsive ? 'search-mobile' : 'search'}
       onSubmit={handleSubmit}
       maxWidth="480px"
       display={isResponsive ? ['block', 'block', 'none'] : ['none', 'none', 'block']}

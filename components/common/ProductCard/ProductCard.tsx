@@ -44,6 +44,9 @@ const ProductCard: FC<PRODUCT> = ({ id, name, url_image, price }) => {
                   transform: 'scale(1.10)',
                   transition: 'all .3s ease-in-out'
                 }}
+                _active={{
+                  transform: 'scale(0.95)'
+                }}
               />
 
               <Flex
