@@ -58,8 +58,6 @@ This is a [Next.js](https://nextjs.org/) project that started with [`create-next
 
 ### Step 1. Getting Started
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
 To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
 
 ```bash
@@ -72,10 +70,6 @@ $ cd bsale-store
 # Install dependencies
 $ yarn install
 
-# Run the app
-$ yarn dev
-
-# Visit http://localhost:3000/
 ```
 
 ### Step 2. Set up a MySQL database
@@ -87,7 +81,9 @@ Set up a MySQL server either locally or any cloud provider.
 Copy the `env.local.example` file in this directory to `.env.local` (which will be ignored by Git):
 
 ```bash
+
 cp .env.local.example .env.local
+
 ```
 
 Set each variable on `.env.local`:
@@ -97,11 +93,24 @@ Set each variable on `.env.local`:
 - `MYSQL_USERNAME` - The name of the MySQL user with access to database.
 - `MYSQL_PASSWORD` - The passowrd of the MySQL user.
 
+```bash
+
+# Run the app
+$ yarn dev
+
+# Visit http://localhost:3000/
+
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
 ## Acknowledgements
 
+- [How to Prevent SQL Injection in Node.js](https://www.veracode.com/blog/secure-development/how-prevent-sql-injection-nodejs)
+- [Serverless mysql - NPM](https://www.npmjs.com/package/serverless-mysql)
+- [MySQLTutorial](https://www.mysqltutorial.org/)
 - [Next.js examples - GitHub](https://github.com/vercel/next.js/tree/canary/examples)
 - [React TypeScript Cheatsheets](https://react-typescript-cheatsheet.netlify.app/)
-- [MySQLTutorial](https://www.mysqltutorial.org/)
 - [Marked - a markdown parser](https://github.com/chjj/marked)
 
 ## Contact

@@ -10,9 +10,10 @@ const handler: NextApiHandler = async (req, res) => {
       const results = await query(
         `
           SELECT * FROM product
-          WHERE name REGEXP '${String(q)}'
-          ORDER BY price ${String(sort)}
-        `
+          WHERE name REGEXP ? 
+          ORDER BY price ?
+        `,
+        [String(q), String(sort)] // Query with placeholders (?) to prevent SQL Injection
       )
 
       return res.status(200).json(results)
@@ -22,8 +23,9 @@ const handler: NextApiHandler = async (req, res) => {
       const results = await query(
         `
           SELECT * FROM product
-          ORDER BY price ${String(sort)}
-        `
+          ORDER BY price ?
+        `,
+        String(sort)
       )
 
       return res.status(200).json(results)
@@ -33,8 +35,9 @@ const handler: NextApiHandler = async (req, res) => {
       const results = await query(
         `
           SELECT * FROM product
-          WHERE name REGEXP '${String(q)}'
-        `
+          WHERE name REGEXP ?
+        `,
+        String(q)
       )
 
       return res.status(200).json(results)
