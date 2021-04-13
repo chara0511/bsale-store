@@ -1,5 +1,4 @@
 import { FC, useRef } from 'react'
-import { Button, IconButton } from '@chakra-ui/button'
 import { useDisclosure } from '@chakra-ui/hooks'
 import {
   Drawer,
@@ -10,30 +9,30 @@ import {
   DrawerHeader,
   DrawerOverlay
 } from '@chakra-ui/modal'
-import { Divider, Text } from '@chakra-ui/layout'
 
 import { BagIcon } from '@/components/icons'
+import { PrimaryButton, RoundedButton } from '@/components/button'
+import { Divider } from '@chakra-ui/layout'
 
-const Sidebar: FC = () => {
+const Cart: FC = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = useRef<any | undefined>()
 
   return (
     <>
-      <IconButton
-        onClick={onOpen}
-        variant="ghost"
-        aria-label="Cart"
+      <RoundedButton
+        ariaLabel="Carrito de compra"
+        handler={onOpen}
         icon={
           <BagIcon fill="none" stroke="currentColor" width="18" height="22" />
         }
       />
 
       <Drawer
+        size="sm"
         isOpen={isOpen}
         placement="right"
         onClose={onClose}
-        size="sm"
         finalFocusRef={btnRef}
       >
         <DrawerOverlay>
@@ -42,16 +41,15 @@ const Sidebar: FC = () => {
             <DrawerHeader fontSize="2xl">Mi Carrito</DrawerHeader>
             <Divider orientation="horizontal" />
 
-            <DrawerBody
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text>En construcción ...</Text>
+            <DrawerBody>
+              {children}
             </DrawerBody>
 
             <DrawerFooter>
-              <Button colorScheme="blue">Comprar</Button>
+              <PrimaryButton
+                name="Procesar Compra"
+                handler={() => console.log('Procesar producto para su compra')}
+              />
             </DrawerFooter>
           </DrawerContent>
         </DrawerOverlay>
@@ -60,4 +58,4 @@ const Sidebar: FC = () => {
   )
 }
 
-export default Sidebar
+export default Cart

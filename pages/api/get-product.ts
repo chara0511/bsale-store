@@ -13,8 +13,8 @@ const handler: NextApiHandler = async (req, res) => {
     const results = await query(
       `
         SELECT * FROM product
-        WHERE id = ${String(id)}
-      `
+        WHERE id = ?
+      `, String(id) // Query with placeholders (?) to prevent SQL Injection
     )
 
     return res.status(200).json(results)

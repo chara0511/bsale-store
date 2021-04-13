@@ -1,9 +1,9 @@
 import { FC } from 'react'
 import NextLink from 'next/link'
 import { Box, Flex, Heading, Link, Stack } from '@chakra-ui/layout'
+import { Image } from '@chakra-ui/image'
 
 import { SearchBar, UserBar } from '@/components/common'
-import { Image } from '@chakra-ui/image'
 
 const Header: FC = () => {
   return (
@@ -53,6 +53,7 @@ const Header: FC = () => {
         <SearchBar />
 
         <UserBar />
+
       </Flex>
 
       <SearchBar isResponsive />

@@ -2,13 +2,13 @@ import { FC } from 'react'
 import { useRouter } from 'next/router'
 import { Center } from '@chakra-ui/layout'
 
+import { PRODUCT } from '@/assets/models'
 import { useEntry } from '@/lib/swr-hooks'
 import {
+  Product,
   ProductError,
-  ProductSkeleton,
-  ProductView
+  ProductSkeleton
 } from '@/components/common'
-import { PRODUCT } from '@/assets/models'
 
 const ProductPage: FC = () => {
   const { query }: any = useRouter()
@@ -41,7 +41,7 @@ const ProductPage: FC = () => {
         ? (
         <>
           {product.map((product: PRODUCT) => (
-            <ProductView key={product.id} {...product} />
+            <Product key={product.id} {...product} />
           ))}
         </>
           )

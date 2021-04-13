@@ -6,8 +6,8 @@ import { Box, Center, Text } from '@chakra-ui/layout'
 import { PRODUCT } from '@/assets/models'
 import {
   ProductCard,
-  ProductError,
-  ProductsSkeleton
+  ProductCardSkeleton,
+  ProductError
 } from '@/components/common'
 import { Paginator, ProductGrid } from '@/components/ui'
 import { useEntries } from '@/lib/swr-hooks'
@@ -40,7 +40,7 @@ const SearchPage: FC = () => {
         )}
 
         <ProductGrid>
-          <ProductsSkeleton />
+          <ProductCardSkeleton />
         </ProductGrid>
       </Center>
     )
@@ -75,7 +75,7 @@ const SearchPage: FC = () => {
         <>
           <ProductError {...products} />
           <ProductGrid>
-            <ProductsSkeleton />
+            <ProductCardSkeleton />
           </ProductGrid>
         </>
           )}
