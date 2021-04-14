@@ -7,14 +7,15 @@ const handler: NextApiHandler = async (req, res) => {
 
   try {
     if (id === undefined) {
-      return res.status(400).json({ message: '`id` required' })
+      return res.status(400).json({ message: 'id required' })
     }
 
     const results = await query(
       `
         SELECT * FROM product
         WHERE id = ?
-      `, String(id) // Query with placeholders (?) to prevent SQL Injection
+      `,
+      id // Query with placeholders (?)
     )
 
     return res.status(200).json(results)

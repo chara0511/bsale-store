@@ -12,8 +12,11 @@ const handler: NextApiHandler = async (req, res) => {
           SELECT * FROM category 
           INNER JOIN product ON category.id = product.category
           WHERE category.name = ?
-          ORDER BY price ?
-        `, [String(q), String(sort)] // Query with placeholders (?) to prevent SQL Injection
+          ORDER BY price ${
+            sort === 'asc' ? 'ASC' : sort === 'desc' ? 'DESC' : ''
+          }
+        `,
+        q // Query with placeholders (?)
       )
 
       return res.status(200).json(results)
@@ -25,7 +28,8 @@ const handler: NextApiHandler = async (req, res) => {
           SELECT * FROM category 
           INNER JOIN product ON category.id = product.category
           WHERE category.name = ?
-        `, q
+        `,
+        q
       )
 
       return res.status(200).json(results)

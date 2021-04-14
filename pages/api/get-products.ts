@@ -11,9 +11,11 @@ const handler: NextApiHandler = async (req, res) => {
         `
           SELECT * FROM product
           WHERE name REGEXP ? 
-          ORDER BY price ?
+          ORDER BY price ${
+            sort === 'asc' ? 'ASC' : sort === 'desc' ? 'DESC' : ''
+          }
         `,
-        [String(q), String(sort)] // Query with placeholders (?) to prevent SQL Injection
+        q // Query with placeholders (?)
       )
 
       return res.status(200).json(results)
@@ -25,7 +27,7 @@ const handler: NextApiHandler = async (req, res) => {
           SELECT * FROM product
           ORDER BY price ?
         `,
-        String(sort)
+        sort
       )
 
       return res.status(200).json(results)
@@ -37,7 +39,7 @@ const handler: NextApiHandler = async (req, res) => {
           SELECT * FROM product
           WHERE name REGEXP ?
         `,
-        String(q)
+        q
       )
 
       return res.status(200).json(results)
