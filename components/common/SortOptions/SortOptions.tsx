@@ -25,11 +25,7 @@ const SortOptions: FC<Props> = ({ closeMenu }) => {
 
   return (
     <List spacing={2} mt={4}>
-      <ListItem
-        fontWeight="semibold"
-        fontSize="xl"
-        lineHeight="tight"
-      >
+      <ListItem fontWeight="semibold" fontSize="xl" lineHeight="tight">
         <NextLink href={{ pathname, query: { q } }}>
           <Link onClick={closeMenu}>Ordenar</Link>
         </NextLink>
@@ -40,7 +36,7 @@ const SortOptions: FC<Props> = ({ closeMenu }) => {
           <NextLink
             href={{
               pathname,
-              query: { q, sort: key }
+              query: q !== undefined ? ({ q, sort: key }) : ({ sort: key })
             }}
           >
             <Link onClick={closeMenu}>{text}</Link>

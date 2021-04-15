@@ -1,5 +1,5 @@
 import { FC, useState } from 'react'
-import { useRouter } from 'next/router'
+import { GetServerSideProps } from 'next'
 import { Center } from '@chakra-ui/layout'
 
 import { PRODUCT } from '@/assets/models'
@@ -9,40 +9,41 @@ import {
   ProductError
 } from '@/components/common'
 import { Paginator, ProductGrid } from '@/components/ui'
-import { useEntries } from '@/lib/swr-hooks'
+import { fetcherBackend } from '@/lib/swr-hooks'
 
 const PER_PAGE: number = 15
 
-const IndexPage: FC = () => {
-  const router = useRouter()
-  const { q, sort }: any = router.query
-
-  const { data: products, isLoading } = useEntries(
-    '/api/get-products',
-    q,
-    sort
+// getServerSideProps runs only on the server-side. Next.js will pre-render this page on each request.
+// => https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const products: PRODUCT[] = await fetcherBackend(
+    'api/get-products',
+    undefined,
+    query.sort
   )
 
+  if (products === undefined) {
+    return { notFound: true }
+  }
+
+  return {
+    props: {
+      products
+    }
+  }
+}
+
+const IndexPage: FC<{ products: PRODUCT[] }> = ({ products }) => {
   const [pageCount, setPageCount] = useState(0)
 
-  if (isLoading) {
-    return (
-      <ProductGrid>
-        <ProductCardSkeleton />
-      </ProductGrid>
-    )
-  }
-  console.log(products)
   return (
     <Center w="full" maxW="1280px" flexDirection="column">
       {Array.isArray(products)
         ? (
         <ProductGrid>
-          {products
-            .slice(pageCount, pageCount + PER_PAGE)
-            .map((product: PRODUCT) => (
-              <ProductCard key={product.id} {...product} />
-            ))}
+          {products.slice(pageCount, pageCount + PER_PAGE).map((product) => (
+            <ProductCard key={product.id} {...product} />
+          ))}
         </ProductGrid>
           )
         : (

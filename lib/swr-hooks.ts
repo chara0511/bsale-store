@@ -7,8 +7,27 @@ interface Data {
   isError: any
 }
 
+const baseURL = process.env.API_URL
+
 const fetcher = async (url: string): Promise<any> => {
   return await window.fetch(url).then(async (res) => await res.json())
+}
+
+export const fetcherBackend = async (
+  endpoint: string,
+  q?: string | string[],
+  sort?: string | string[]
+): Promise<any> => {
+  const url =
+    q && sort
+      ? `${String(baseURL)}/${endpoint}?q=${String(q)}&sort=${String(sort)}`
+      : q
+        ? `${String(baseURL)}/${endpoint}?q=${String(q)}`
+        : sort
+          ? `${String(baseURL)}/${endpoint}?sort=${String(sort)}`
+          : `${String(baseURL)}/${endpoint}`
+
+  return await fetch(url).then(async (res) => await res.json())
 }
 
 export const useEntries = (
@@ -16,6 +35,7 @@ export const useEntries = (
   query?: string,
   sort?: string
 ): Data => {
+  // !improve this with => SWITCH case
   const { data, error } = useSWR(
     query && sort
       ? `${url}?q=${query}&sort=${sort}`

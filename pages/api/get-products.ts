@@ -25,9 +25,10 @@ const handler: NextApiHandler = async (req, res) => {
       const results = await query(
         `
           SELECT * FROM product
-          ORDER BY price ?
-        `,
-        sort
+          ORDER BY price ${
+            sort === 'asc' ? 'ASC' : sort === 'desc' ? 'DESC' : ''
+          }
+        `
       )
 
       return res.status(200).json(results)
