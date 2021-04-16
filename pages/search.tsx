@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { FC, useState } from 'react'
-import { useRouter } from 'next/router'
+import { GetServerSideProps } from 'next'
 import { Box, Center, Text } from '@chakra-ui/layout'
 
 import { PRODUCT } from '@/assets/models'
@@ -10,47 +9,38 @@ import {
   ProductError
 } from '@/components/common'
 import { Paginator, ProductGrid } from '@/components/ui'
-import { useEntries } from '@/lib/swr-hooks'
+import { fetcherBackend } from '@/lib/swr-hooks'
 
 const PER_PAGE: number = 15
 
-const SearchPage: FC = () => {
-  const router = useRouter()
-  const { q, sort }: any = router.query
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const { q, sort } = query
 
-  const { data: products, isLoading } = useEntries(
-    '/api/get-products',
-    q,
-    sort
-  )
+  const products: PRODUCT[] = await fetcherBackend('api/get-products', q, sort)
 
-  const [pageCount, setPageCount] = useState(0)
-
-  if (isLoading) {
-    return (
-      <Center flexDirection="column" w="full" maxW="1280px">
-        {q && (
-          <Box as="span" p={2} mb={4} textAlign="center">
-            Buscando: "
-            <Text as="strong" fontWeight="bold">
-              {q}
-            </Text>
-            "
-          </Box>
-        )}
-
-        <ProductGrid>
-          <ProductCardSkeleton />
-        </ProductGrid>
-      </Center>
-    )
+  if (products === undefined) {
+    return { notFound: true }
   }
+
+  return {
+    props: {
+      products,
+      q
+    }
+  }
+}
+
+const SearchPage: FC<{
+  products: PRODUCT[]
+  q: string | string[] | undefined
+}> = ({ products, q }) => {
+  const [pageCount, setPageCount] = useState(0)
 
   return (
     <Center flexDirection="column" w="full" maxW="1280px">
       <Box as="span" p={2} mb={4} textAlign="center">
         Mostrando {products.length} resultados{' '}
-        {q && (
+        {q !== undefined && (
           <>
             para "
             <Text as="strong" fontWeight="bold">

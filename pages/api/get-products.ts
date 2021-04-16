@@ -21,6 +21,18 @@ const handler: NextApiHandler = async (req, res) => {
       return res.status(200).json(results)
     }
 
+    if (q !== undefined) {
+      const results = await query(
+        `
+          SELECT * FROM product
+          WHERE name REGEXP ?
+        `,
+        q
+      )
+
+      return res.status(200).json(results)
+    }
+
     if (sort !== undefined) {
       const results = await query(
         `
@@ -29,18 +41,6 @@ const handler: NextApiHandler = async (req, res) => {
             sort === 'asc' ? 'ASC' : sort === 'desc' ? 'DESC' : ''
           }
         `
-      )
-
-      return res.status(200).json(results)
-    }
-
-    if (q !== undefined) {
-      const results = await query(
-        `
-          SELECT * FROM product
-          WHERE name REGEXP ?
-        `,
-        q
       )
 
       return res.status(200).json(results)

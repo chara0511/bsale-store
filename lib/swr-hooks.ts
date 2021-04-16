@@ -27,7 +27,18 @@ export const fetcherBackend = async (
           ? `${String(baseURL)}/${endpoint}?sort=${String(sort)}`
           : `${String(baseURL)}/${endpoint}`
 
-  return await fetch(url).then(async (res) => await res.json())
+  const res = await fetch(url)
+  return await res.json()
+}
+
+export const fetcherEntry = async (
+  endpoint: string,
+  id?: string | string[]
+): Promise<any> => {
+  const url = `${String(baseURL)}/${endpoint}?id=${String(id)}`
+
+  const res = await fetch(url)
+  return await res.json()
 }
 
 export const useEntries = (
@@ -35,7 +46,7 @@ export const useEntries = (
   query?: string,
   sort?: string
 ): Data => {
-  // !improve this with => SWITCH case
+  // !improve this maybe with SWITCH case
   const { data, error } = useSWR(
     query && sort
       ? `${url}?q=${query}&sort=${sort}`
