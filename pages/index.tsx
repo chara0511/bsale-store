@@ -17,14 +17,10 @@ const PER_PAGE: number = 15
 // => https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const products: PRODUCT[] = await fetcherBackend(
-    'api/get-products',
+    'api/products',
     undefined,
     query.sort
   )
-
-  if (products === undefined) {
-    return { notFound: true }
-  }
 
   return {
     props: {

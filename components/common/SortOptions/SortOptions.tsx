@@ -10,8 +10,8 @@ interface Props {
 }
 
 const SORT = Object.entries({
-  asc: 'Precio: Bajo a alto',
-  desc: 'Precio: Alto a bajo'
+  'price-asc': 'Precio: Bajo a alto',
+  'price-desc': 'Precio: Alto a bajo'
 })
 
 const SortOptions: FC<Props> = ({ closeMenu }) => {

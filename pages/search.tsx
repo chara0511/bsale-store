@@ -16,11 +16,7 @@ const PER_PAGE: number = 15
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { q, sort } = query
 
-  const products: PRODUCT[] = await fetcherBackend('api/get-products', q, sort)
-
-  if (products === undefined) {
-    return { notFound: true }
-  }
+  const products: PRODUCT[] = await fetcherBackend('api/products', q, sort)
 
   return {
     props: {
@@ -56,7 +52,7 @@ const SearchPage: FC<{
         <ProductGrid>
           {products
             .slice(pageCount, pageCount + PER_PAGE)
-            .map((product: PRODUCT) => (
+            .map((product) => (
               <ProductCard key={product.id} {...product} />
             ))}
         </ProductGrid>

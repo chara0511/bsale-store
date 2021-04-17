@@ -14,7 +14,11 @@ const DefaultLayout: FC = ({ children }) => {
       <Head>
         <title>BSALE Store - Test</title>
         <link rel="icon" href="/favicon.ico" />
-        <link rel="shortcut icon" href="https://dojiw2m9tvv09.cloudfront.net/16738/2/favicon.ico?268" type="image/x-icon"></link>
+        <link
+          rel="shortcut icon"
+          href="https://dojiw2m9tvv09.cloudfront.net/16738/2/favicon.ico?268"
+          type="image/x-icon"
+        ></link>
       </Head>
 
       <Header />

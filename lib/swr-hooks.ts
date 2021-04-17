@@ -7,7 +7,8 @@ interface Data {
   isError: any
 }
 
-const baseURL = process.env.API_URL
+const dev = process.env.NODE_ENV !== 'production'
+const baseURL = dev ? process.env.API_URL : 'https://bsale-store.vercel.app'
 
 const fetcher = async (url: string): Promise<any> => {
   return await window.fetch(url).then(async (res) => await res.json())
@@ -32,10 +33,9 @@ export const fetcherBackend = async (
 }
 
 export const fetcherEntry = async (
-  endpoint: string,
-  id?: string | string[]
+  endpoint: string
 ): Promise<any> => {
-  const url = `${String(baseURL)}/${endpoint}?id=${String(id)}`
+  const url = `${String(baseURL)}/${endpoint}`
 
   const res = await fetch(url)
   return await res.json()

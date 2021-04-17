@@ -13,7 +13,7 @@ const handler: NextApiHandler = async (req, res) => {
           INNER JOIN product ON category.id = product.category
           WHERE category.name = ?
           ORDER BY price ${
-            sort === 'asc' ? 'ASC' : sort === 'desc' ? 'DESC' : ''
+            sort === 'price-asc' ? 'ASC' : sort === 'price-desc' ? 'DESC' : ''
           }
         `,
         q // Query with placeholders (?)
