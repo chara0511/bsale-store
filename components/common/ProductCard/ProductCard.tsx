@@ -29,12 +29,8 @@ const ProductCard: FC<PRODUCT> = ({ id, name, url_image, price }) => {
           <ScaleFade initialScale={0.9} in={isOpen}>
             <Stack maxW="sm">
               <Image
-                src={
-                  url_image === '' || url_image === null
-                    ? '/noimage.jpg'
-                    : url_image
-                }
-                fallbackSrc="/loadingimage.png"
+                src={url_image}
+                fallbackSrc="/noimage.jpg"
                 alt={`${name} product`}
                 w="260px"
                 h="340px"

@@ -10,7 +10,7 @@ import {
   ProductError
 } from '@/components/common'
 import { Menu, Paginator, ProductGrid } from '@/components/ui'
-import { fetcherEntries, fetcherEntry } from '@/lib/swr-hooks'
+import { fetcherEntries, fetcherEntry } from '@/lib/fetcher'
 
 const PER_PAGE: number = 15
 

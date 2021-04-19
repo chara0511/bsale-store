@@ -20,6 +20,7 @@ const PrimaryButton: FC<Props> = ({ isDisabled, name, handler }) => {
       borderRadius="sm"
       color="whiteAlpha.900"
       backgroundColor="blackAlpha.900"
+      textTransform="uppercase"
       _hover={{
         backgroundColor: 'blackAlpha.800'
       }}

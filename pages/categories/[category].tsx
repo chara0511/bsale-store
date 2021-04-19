@@ -11,7 +11,7 @@ import {
   ProductError
 } from '@/components/common'
 import { Menu, ProductGrid } from '@/components/ui'
-import { fetcherEntries, fetcherEntry } from '@/lib/swr-hooks'
+import { fetcherEntries, fetcherEntry } from '@/lib/fetcher'
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { category, sort } = query

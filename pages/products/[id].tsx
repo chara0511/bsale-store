@@ -3,7 +3,7 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import { Center } from '@chakra-ui/layout'
 
 import { PRODUCT } from '@/assets/models'
-import { fetcherEntries, fetcherEntry } from '@/lib/swr-hooks'
+import { fetcherEntries, fetcherEntry } from '@/lib/fetcher'
 import { Product, ProductError, ProductSkeleton } from '@/components/common'
 
 // Page with dynamic routes, getStaticPaths only runs at build time on server-side.

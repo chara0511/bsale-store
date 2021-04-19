@@ -20,20 +20,23 @@ const Product: FC<PRODUCT> = ({ name, url_image, price }) => {
   return (
     <>
       <Fade in={isOpen}>
-        <Box borderWidth="1px" overflow="hidden" position="relative">
+        <Box
+          w={['325px', '400px', '450px', '500px']}
+          borderWidth="1px"
+          overflow="hidden"
+          position="relative"
+          backgroundColor="white"
+        >
           <Image
-            src={url_image === '' ? '/noimage.jpg' : url_image}
-            fallbackSrc="/loadingimage.png"
+            src={url_image}
+            fallbackSrc="/noimage.jpg"
             alt={`producto ${name}`}
             w="full"
             maxW="300px"
             height="475px"
+            m="auto"
             objectFit="contain"
-            backgroundColor="white"
-            _hover={{
-              transform: 'scale(1.10)',
-              transition: 'all .3s ease-in-out'
-            }}
+            transform= 'scale(1.10)'
           />
         </Box>
       </Fade>
@@ -44,7 +47,7 @@ const Product: FC<PRODUCT> = ({ name, url_image, price }) => {
         justifyContent="space-around"
         height="475px"
         w="full"
-        maxWidth={['400px', '400px', '300px', '350px']}
+        maxWidth={['325px', '400px', '450px', '500px']}
       >
         <Heading
           as="h1"
