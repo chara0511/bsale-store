@@ -10,8 +10,8 @@ interface Props {
 }
 
 const SORT = Object.entries({
-  asc: 'Precio: Bajo a alto',
-  desc: 'Precio: Alto a bajo'
+  'price-asc': 'Precio: Bajo a alto',
+  'price-desc': 'Precio: Alto a bajo'
 })
 
 const SortOptions: FC<Props> = ({ closeMenu }) => {
@@ -25,11 +25,7 @@ const SortOptions: FC<Props> = ({ closeMenu }) => {
 
   return (
     <List spacing={2} mt={4}>
-      <ListItem
-        fontWeight="semibold"
-        fontSize="xl"
-        lineHeight="tight"
-      >
+      <ListItem fontWeight="semibold" fontSize="xl" lineHeight="tight">
         <NextLink href={{ pathname, query: { q } }}>
           <Link onClick={closeMenu}>Ordenar</Link>
         </NextLink>
@@ -40,7 +36,7 @@ const SortOptions: FC<Props> = ({ closeMenu }) => {
           <NextLink
             href={{
               pathname,
-              query: { q, sort: key }
+              query: q !== undefined ? ({ q, sort: key }) : ({ sort: key })
             }}
           >
             <Link onClick={closeMenu}>{text}</Link>

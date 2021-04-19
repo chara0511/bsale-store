@@ -12,22 +12,10 @@ const handler: NextApiHandler = async (req, res) => {
           SELECT * FROM product
           WHERE name REGEXP ? 
           ORDER BY price ${
-            sort === 'asc' ? 'ASC' : sort === 'desc' ? 'DESC' : ''
+            sort === 'price-asc' ? 'ASC' : sort === 'price-desc' ? 'DESC' : ''
           }
         `,
         q // Query with placeholders (?)
-      )
-
-      return res.status(200).json(results)
-    }
-
-    if (sort !== undefined) {
-      const results = await query(
-        `
-          SELECT * FROM product
-          ORDER BY price ?
-        `,
-        sort
       )
 
       return res.status(200).json(results)
@@ -40,6 +28,19 @@ const handler: NextApiHandler = async (req, res) => {
           WHERE name REGEXP ?
         `,
         q
+      )
+
+      return res.status(200).json(results)
+    }
+
+    if (sort !== undefined) {
+      const results = await query(
+        `
+          SELECT * FROM product
+          ORDER BY price ${
+            sort === 'price-asc' ? 'ASC' : sort === 'price-desc' ? 'DESC' : ''
+          }
+        `
       )
 
       return res.status(200).json(results)

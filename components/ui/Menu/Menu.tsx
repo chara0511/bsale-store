@@ -23,9 +23,11 @@ import { CATEGORY } from '@/assets/models'
 import { SortOptions } from '@/components/common'
 import { getCategoryPath } from '@/lib/get-category-path'
 
-const Menu: FC<{ name: string, categories: CATEGORY[], isResponsive?: boolean }> = ({
-  name,
-  categories,
+const Menu: FC<{
+  categoryList: CATEGORY[]
+  isResponsive?: boolean
+}> = ({
+  categoryList,
   isResponsive
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -106,11 +108,11 @@ const Menu: FC<{ name: string, categories: CATEGORY[], isResponsive?: boolean }>
                           pathname: '/search'
                         }}
                       >
-                        <Link onClick={onClose}>{name}</Link>
+                        <Link onClick={onClose}>Categorias</Link>
                       </NextLink>
                     </ListItem>
 
-                    {categories.map((cat) => (
+                    {categoryList.map((cat) => (
                       <ListItem key={cat.id} textTransform="capitalize" ml={4}>
                         <NextLink
                           href={{
@@ -154,11 +156,11 @@ const Menu: FC<{ name: string, categories: CATEGORY[], isResponsive?: boolean }>
                     pathname: '/search'
                   }}
                 >
-                  <Link> {name}</Link>
+                  <Link>Categorias</Link>
                 </NextLink>
               </ListItem>
 
-              {categories.map((cat) => (
+              {categoryList.map((cat) => (
                 <ListItem key={cat.id} textTransform="capitalize" ml={[4, 4, 4, 0]}>
                   <NextLink
                     href={{

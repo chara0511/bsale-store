@@ -18,13 +18,15 @@ const SearchBar: FC<{ isResponsive?: boolean }> = ({ isResponsive = false }) => 
   ): Promise<boolean> => {
     e.preventDefault()
 
+    // Handles client-side transitions, this method is useful for cases where next/link is not enough
+    // https://nextjs.org/docs/api-reference/next/router#routerpush
     return await router.push(
       {
         pathname: '/search',
         query: search.query !== '' ? { q: search.query } : {}
       },
       undefined,
-      { shallow: true }
+      { shallow: false } // Update the path of the current page without rerunning getStaticProps, getServerSideProps or getInitialProps
     )
   }
 
