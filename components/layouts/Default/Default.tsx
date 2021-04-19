@@ -2,13 +2,9 @@ import { FC } from 'react'
 import Head from 'next/head'
 import { Container } from '@chakra-ui/layout'
 
-import { MenuSkeleton } from '@/components/common'
-import { Footer, Header, Menu } from '@/components/ui'
-import { useEntries } from '@/lib/swr-hooks'
+import { Footer, Header } from '@/components/ui'
 
 const DefaultLayout: FC = ({ children }) => {
-  const { data: categories, isLoading } = useEntries('/api/get-categories')
-
   return (
     <>
       <Head>
@@ -33,18 +29,6 @@ const DefaultLayout: FC = ({ children }) => {
         px="1rem"
         position="relative"
       >
-        {isLoading && <MenuSkeleton />}
-
-        {Array.isArray(categories)
-          ? (
-          <>
-            <Menu name="categorias" categories={categories} />
-            <Menu name="categorias" categories={categories} isResponsive />
-          </>
-            )
-          : (
-          <MenuSkeleton />
-            )}
         {children}
       </Container>
 

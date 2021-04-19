@@ -1,4 +1,5 @@
-import { FC, useState } from 'react'
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+import { FC } from 'react'
 import { GetServerSideProps } from 'next'
 import { Box, Center, Text } from '@chakra-ui/layout'
 
@@ -9,33 +10,34 @@ import {
   ProductCardSkeleton,
   ProductError
 } from '@/components/common'
-import { Menu, Paginator, ProductGrid } from '@/components/ui'
+import { Menu, ProductGrid } from '@/components/ui'
 import { fetcherEntries, fetcherEntry } from '@/lib/swr-hooks'
 
-const PER_PAGE: number = 15
-
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { q, sort } = query
-
+  const { category, sort } = query
   const categoryList: CATEGORY[] = await fetcherEntry('api/get-category-list')
-  const products: PRODUCT[] = await fetcherEntries('api/products', q, sort)
+  const productsByCategory: PRODUCT[] = await fetcherEntries(`api/categories/${String(category)}`, undefined, sort)
+
+  if (productsByCategory.length === 0) {
+    return {
+      notFound: true
+    }
+  }
 
   return {
     props: {
+      category,
       categoryList,
-      products,
-      q
+      productsByCategory
     }
   }
 }
 
-const SearchPage: FC<{
+const CategoryPage: FC<{
+  category: string
   categoryList: CATEGORY[]
-  products: PRODUCT[]
-  q: string | string[] | undefined
-}> = ({ categoryList, products, q }) => {
-  const [pageCount, setPageCount] = useState(0)
-
+  productsByCategory: PRODUCT[]
+}> = ({ category, categoryList, productsByCategory }) => {
   return (
     <Center flexDirection="column" w="full" maxW="1280px">
       {Array.isArray(categoryList)
@@ -50,44 +52,31 @@ const SearchPage: FC<{
           )}
 
       <Box as="span" p={2} mb={4} textAlign="center">
-        Mostrando {products.length} resultados{' '}
-        {q !== undefined && (
-          <>
-            para "
-            <Text as="strong" fontWeight="bold">
-              {q}
-            </Text>
-            "
-          </>
-        )}
+        Mostrando {productsByCategory.length} resultados por categoría "
+        <Text as="strong" fontWeight="bold" textTransform="capitalize">
+          {category}
+        </Text>
+        "
       </Box>
 
-      {Array.isArray(products)
+      {Array.isArray(productsByCategory)
         ? (
         <ProductGrid>
-          {products
-            .slice(pageCount, pageCount + PER_PAGE)
-            .map((product) => (
-              <ProductCard key={product.id} {...product} />
-            ))}
+          {productsByCategory.map((product) => (
+            <ProductCard key={product.id} {...product} />
+          ))}
         </ProductGrid>
           )
         : (
         <>
-          <ProductError {...products} />
+          <ProductError {...productsByCategory} />
           <ProductGrid>
             <ProductCardSkeleton />
           </ProductGrid>
         </>
           )}
-
-      <Paginator
-        products={products}
-        pageCount={setPageCount}
-        perPage={PER_PAGE}
-      />
     </Center>
   )
 }
 
-export default SearchPage
+export default CategoryPage

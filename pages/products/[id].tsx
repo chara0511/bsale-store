@@ -3,13 +3,13 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import { Center } from '@chakra-ui/layout'
 
 import { PRODUCT } from '@/assets/models'
-import { fetcherBackend, fetcherEntry } from '@/lib/swr-hooks'
+import { fetcherEntries, fetcherEntry } from '@/lib/swr-hooks'
 import { Product, ProductError, ProductSkeleton } from '@/components/common'
 
 // Page with dynamic routes, getStaticPaths only runs at build time on server-side.
 // => https://nextjs.org/docs/basic-features/data-fetching#getstaticpaths-static-generation
 export const getStaticPaths: GetStaticPaths = async () => {
-  const products: PRODUCT[] = await fetcherBackend('api/products')
+  const products: PRODUCT[] = await fetcherEntries('api/products')
 
   // Get the paths we want to pre-render based on products conditionally.
   const paths = Array.isArray(products)
