@@ -1,7 +1,10 @@
 import { FC } from 'react'
 import { Wrap, WrapItem } from '@chakra-ui/layout'
+import { useColorMode } from '@chakra-ui/color-mode'
+import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 
 import { Cart, CartItem } from '@/components/common'
+import { RoundedButton } from '@/components/button'
 
 const products = [
   {
@@ -25,12 +28,29 @@ const products = [
 ]
 
 const UserBar: FC = () => {
+  const { colorMode, toggleColorMode } = useColorMode()
   return (
     <Wrap>
       <WrapItem>
         <Cart>
           <CartItem products={products} />
         </Cart>
+      </WrapItem>
+      <WrapItem>
+
+        <RoundedButton
+          ariaLabel="Toggle"
+          handler={toggleColorMode}
+          icon={
+            colorMode === 'light'
+              ? (
+              <MoonIcon width="18" height="22"/>
+                )
+              : (
+              <SunIcon width="18" height="22" />
+                )
+          }
+        />
       </WrapItem>
     </Wrap>
   )
