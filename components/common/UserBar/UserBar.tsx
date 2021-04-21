@@ -29,6 +29,7 @@ const products = [
 
 const UserBar: FC = () => {
   const { colorMode, toggleColorMode } = useColorMode()
+
   return (
     <Wrap>
       <WrapItem>
@@ -36,8 +37,8 @@ const UserBar: FC = () => {
           <CartItem products={products} />
         </Cart>
       </WrapItem>
-      <WrapItem>
 
+      <WrapItem>
         <RoundedButton
           ariaLabel="Toggle"
           handler={toggleColorMode}

@@ -14,7 +14,7 @@ import { fetcherEntries, fetcherEntry } from '@/lib/fetcher'
 
 const PER_PAGE: number = 15
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+export const getServerSideProps: GetServerSideProps = async ({ query, req }) => {
   const { q, sort } = query
 
   const categoryList: CATEGORY[] = await fetcherEntry('api/get-category-list')
@@ -23,6 +23,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   return {
     props: {
       categoryList,
+      cookies: req.headers.cookie ?? '',
       products,
       q
     }

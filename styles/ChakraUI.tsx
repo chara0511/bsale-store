@@ -1,12 +1,15 @@
-
 import { FC } from 'react'
 import {
   ChakraProvider,
-  cookieStorageManager
+  cookieStorageManager,
+  localStorageManager
 } from '@chakra-ui/react'
 
-const ChakraUI: FC<{cookies: string}> = ({ cookies, children }) => {
-  const colorModeManager = cookieStorageManager(cookies)
+const ChakraUI: FC<{ cookies: any }> = ({ cookies, children }) => {
+  const colorModeManager =
+    typeof cookies === 'string'
+      ? cookieStorageManager(cookies)
+      : localStorageManager
 
   return (
     <ChakraProvider colorModeManager={colorModeManager}>

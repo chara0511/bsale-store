@@ -16,7 +16,7 @@ const PER_PAGE: number = 15
 
 // getServerSideProps runs only on the server-side. Next.js will pre-render this page on each request.
 // => https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+export const getServerSideProps: GetServerSideProps = async ({ query, req }) => {
   const categoryList: CATEGORY[] = await fetcherEntry('api/get-category-list')
   const products: PRODUCT[] = await fetcherEntries(
     'api/products',
@@ -27,6 +27,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   return {
     props: {
       categoryList,
+      cookies: req.headers.cookie ?? '',
       products
     }
   }
