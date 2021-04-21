@@ -58,7 +58,7 @@ This is a [Next.js](https://nextjs.org/) project that started with [`create-next
 
 ### Step 1. Getting Started
 
-To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+To clone and run this application, you'll need [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer and [Yarn](https://yarnpkg.com/getting-started/install). From your command line:
 
 ```bash
 # Clone this repository

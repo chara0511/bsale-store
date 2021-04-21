@@ -2,17 +2,20 @@ import { FC } from 'react'
 import NextLink from 'next/link'
 import { Box, Flex, Heading, Link, Stack } from '@chakra-ui/layout'
 import { Image } from '@chakra-ui/image'
+import { useColorModeValue } from '@chakra-ui/color-mode'
 
 import { SearchBar, UserBar } from '@/components/common'
 
 const Header: FC = () => {
+  const bg = useColorModeValue('white', 'gray.900')
+
   return (
     <Stack
       as="header"
       position="fixed"
       zIndex={99}
       alignItems="center"
-      backgroundColor="white"
+      backgroundColor={bg}
       w="full"
       boxShadow="sm"
       px={4}
@@ -41,7 +44,6 @@ const Header: FC = () => {
                 size="md"
                 lineHeight="tight"
                 w="fit-content"
-                color="blackAlpha.700"
                 isTruncated
               >
                 Store

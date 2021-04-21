@@ -1,10 +1,13 @@
 import { FC } from 'react'
 import Head from 'next/head'
 import { Container } from '@chakra-ui/layout'
+import { useColorModeValue } from '@chakra-ui/color-mode'
 
 import { Footer, Header } from '@/components/ui'
 
 const DefaultLayout: FC = ({ children }) => {
+  const bg = useColorModeValue('gray.50', 'gray.800')
+
   return (
     <>
       <Head>
@@ -21,7 +24,7 @@ const DefaultLayout: FC = ({ children }) => {
 
       <Container
         as="main"
-        backgroundColor="gray.50"
+        backgroundColor={bg}
         centerContent
         maxW="full"
         minHeight="100vh"

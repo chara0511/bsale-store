@@ -1,16 +1,16 @@
 import type { AppProps } from 'next/app'
-import { ChakraProvider } from '@chakra-ui/react'
-import '../styles/globals.css'
 
 import { DefaultLayout } from '@/components/layouts'
+import ChakraUI from 'styles/ChakraUI'
+import '../styles/globals.css'
 
-function MyApp ({ Component, pageProps }: AppProps): JSX.Element {
+const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   return (
-    <ChakraProvider>
+    <ChakraUI cookies={pageProps.cookies}>
       <DefaultLayout>
         <Component {...pageProps} />
       </DefaultLayout>
-    </ChakraProvider>
+    </ChakraUI>
   )
 }
 
