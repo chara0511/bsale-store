@@ -1,0 +1,28 @@
+{
+  "name": "bsale-store-docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcarlos0511/bsale-store.git"
+  },
+  "author": "Chara-",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jcarlos0511/bsale-store/issues"
+  },
+  "homepage": "https://github.com/jcarlos0511/bsale-store#readme",
+  "dependencies": {
+    "next": "^10.1.3",
+    "nextra": "0.4.3",
+    "nextra-theme-docs": "1.1.5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}

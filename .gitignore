@@ -33,4 +33,7 @@ yarn-error.log*
 # vercel
 .vercel
 
-.vercel
+# docs
+/docs/node_modules
+/docs/.next
+/docs/.vercel
