@@ -1,7 +1,7 @@
 export default {
   repository: 'https://github.com/jcarlos0511/bsale-store',
-  docsRepository: 'https://github.com/jcarlos0511/bsale-store5',
-  branch: 'main',
+  docsRepository: 'https://github.com/jcarlos0511/bsale-store',
+  branch: 'docs',
   path: '/docs',
   titleSuffix: ' – Test',
   nextLinks: true,

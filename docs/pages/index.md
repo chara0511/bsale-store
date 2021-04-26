@@ -1,18 +1,21 @@
-# Bienvenido a BSale Store
+# Bienvenido(a) a BSale Store
 
 ## Empezando
 
-**BSale Store - test** está construido con:
+**BSale Store - test** está construido software moderno de código abierto:
 
-- [Javascript](https://developer.mozilla.org/es/docs/Web/JavaScript)
-- [Nextjs](https://nextjs.org/)
-- [React](https://reactjs.org/)
 - [Chakra-ui](https://chakra-ui.com/)
-- [CSS](https://developer.mozilla.org/es/docs/Web/CSS)
-- [SWR](https://swr.vercel.app/)
 - [MySQL](https://www.mysql.com/)
+- [Nextjs](https://nextjs.org/) / [React](https://reactjs.org/)
+- [SWR](https://swr.vercel.app/)
 - [TypeScript](https://www.typescriptlang.org/)
 - Desplegado usando serverless [Vercel](https://vercel.com/)
+
+Rápidamente iteraremos e implementaremos nuestro código, dando vida a nuestras ideas a través del full-stack. Utilizando Jamstack y el flujo de trabajo óptimo para desarrolladores front-end, haremos lo siguiente:
+
+- ✅ &nbsp; Crear aplicaciones dinámicas que se vuelven estáticas.
+- ✅ &nbsp; Enviar código a un repositorio con Git.
+- ✅ &nbsp; Desplegar instantáneamente en una CDN global.
 
 ## MIT LICENSE
 
