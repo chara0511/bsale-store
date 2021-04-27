@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { useRouter } from 'next/router'
 import NextLink from 'next/link'
 import { Link, List, ListItem } from '@chakra-ui/layout'
@@ -14,7 +14,7 @@ const SORT = Object.entries({
   'price-desc': 'Precio: Alto a bajo'
 })
 
-const SortOptions: FC<Props> = ({ closeMenu }) => {
+const SortItem: FC<Props> = ({ closeMenu }) => {
   const router = useRouter()
   const { asPath } = router
   const { q } = router.query
@@ -25,7 +25,12 @@ const SortOptions: FC<Props> = ({ closeMenu }) => {
 
   return (
     <List spacing={2} mt={4}>
-      <ListItem fontWeight="semibold" fontSize="xl" lineHeight="tight">
+      <ListItem
+        fontWeight="semibold"
+        fontSize="xl"
+        textTransform="capitalize"
+        lineHeight="tight"
+      >
         <NextLink href={{ pathname, query: { q } }}>
           <Link onClick={closeMenu}>Ordenar</Link>
         </NextLink>
@@ -36,7 +41,7 @@ const SortOptions: FC<Props> = ({ closeMenu }) => {
           <NextLink
             href={{
               pathname,
-              query: q !== undefined ? ({ q, sort: key }) : ({ sort: key })
+              query: q !== undefined ? { q, sort: key } : { sort: key }
             }}
           >
             <Link onClick={closeMenu}>{text}</Link>
@@ -47,4 +52,4 @@ const SortOptions: FC<Props> = ({ closeMenu }) => {
   )
 }
 
-export default SortOptions
+export default SortItem
