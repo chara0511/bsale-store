@@ -13,15 +13,12 @@ import {
   IconButton,
   Image,
   Link,
-  List,
-  ListItem,
   useDisclosure
 } from '@chakra-ui/react'
 import { HamburgerIcon } from '@chakra-ui/icons'
 
 import { CATEGORY } from '@/assets/models'
-import { SortOptions } from '@/components/common'
-import { getCategoryPath } from '@/lib/get-category-path'
+import { CategoryItem, SortItem } from '@/components/items'
 
 const Menu: FC<{
   categoryList: CATEGORY[]
@@ -43,7 +40,7 @@ const Menu: FC<{
             position="fixed"
             top={36}
             left={0}
-            zIndex={99}
+            zIndex={49}
             display={['block', 'block', 'block', 'none']}
             onClick={onOpen}
             variant="solid"
@@ -91,42 +88,14 @@ const Menu: FC<{
                     </Link>
                   </NextLink>
                 </DrawerHeader>
+
                 <Divider orientation="horizontal" />
 
                 <DrawerBody>
-
                   {/* CATEGORIAS */}
-                  <List spacing={2} mt={4}>
-                    <ListItem
-                      fontWeight="semibold"
-                      fontSize="xl"
-                      textTransform="capitalize"
-                      lineHeight="tight"
-                    >
-                      <NextLink
-                        href={{
-                          pathname: '/search'
-                        }}
-                      >
-                        <Link onClick={onClose}>Categorias</Link>
-                      </NextLink>
-                    </ListItem>
-
-                    {categoryList.map((cat) => (
-                      <ListItem key={cat.id} textTransform="capitalize" ml={4}>
-                        <NextLink
-                          href={{
-                            pathname: getCategoryPath(cat.name)
-                          }}
-                        >
-                          <Link onClick={onClose}> {cat.name}</Link>
-                        </NextLink>
-                      </ListItem>
-                    ))}
-                  </List>
-
+                  <CategoryItem categoryList={categoryList} closeMenu={onClose}/>
                   {/* ORDENAR */}
-                  <SortOptions closeMenu={onClose}/>
+                  <SortItem closeMenu={onClose}/>
                 </DrawerBody>
               </DrawerContent>
             </DrawerOverlay>
@@ -142,36 +111,9 @@ const Menu: FC<{
             position="fixed"
             top={24}
             left={8}
-            zIndex={99}
+            zIndex={49}
           >
-            <List spacing={2} mt={4}>
-              <ListItem
-                fontWeight="semibold"
-                fontSize="xl"
-                textTransform="capitalize"
-                lineHeight="tight"
-              >
-                <NextLink
-                  href={{
-                    pathname: '/search'
-                  }}
-                >
-                  <Link>Categorias</Link>
-                </NextLink>
-              </ListItem>
-
-              {categoryList.map((cat) => (
-                <ListItem key={cat.id} textTransform="capitalize" ml={[4, 4, 4, 0]}>
-                  <NextLink
-                    href={{
-                      pathname: getCategoryPath(cat.name)
-                    }}
-                  >
-                    <Link> {cat.name}</Link>
-                  </NextLink>
-                </ListItem>
-              ))}
-            </List>
+            <CategoryItem categoryList={categoryList} />
           </Box>
 
           {/* ORDENAR */}
@@ -180,9 +122,9 @@ const Menu: FC<{
             position="fixed"
             top={24}
             right={8}
-            zIndex={99}
+            zIndex={49}
           >
-            <SortOptions />
+            <SortItem />
           </Box>
         </>
           )}

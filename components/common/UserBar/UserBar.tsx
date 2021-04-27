@@ -3,29 +3,9 @@ import { Wrap, WrapItem } from '@chakra-ui/layout'
 import { useColorMode } from '@chakra-ui/color-mode'
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 
-import { Cart, CartItem } from '@/components/common'
-import { RoundedButton } from '@/components/button'
-
-const products = [
-  {
-    category: 1,
-    discount: 20,
-    id: 5,
-    name: 'ENERGETICA MR BIG',
-    price: 1490,
-    url_image:
-      'https://dojiw2m9tvv09.cloudfront.net/11132/product/misterbig3308256.jpg'
-  },
-  {
-    category: 1,
-    discount: 20,
-    id: 6,
-    name: 'ENERGETICA MR BIG',
-    price: 1490,
-    url_image:
-      'https://dojiw2m9tvv09.cloudfront.net/11132/product/misterbig3308256.jpg'
-  }
-]
+import { Cart } from '@/components/common'
+import { ColorMode } from '@/components/color-mode'
+import { MenuItem } from '@/components/items'
 
 const UserBar: FC = () => {
   const { colorMode, toggleColorMode } = useColorMode()
@@ -33,9 +13,15 @@ const UserBar: FC = () => {
   return (
     <Wrap>
       <WrapItem>
-        <Cart>
-          <CartItem products={products} />
-        </Cart>
+        <Cart />
+      </WrapItem>
+
+      <WrapItem>
+        <ColorMode />
+      </WrapItem>
+
+      <WrapItem>
+        <MenuItem />
       </WrapItem>
 
       <WrapItem>

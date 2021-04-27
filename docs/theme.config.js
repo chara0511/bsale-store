@@ -25,20 +25,11 @@ export default {
       <meta name="theme-color" content="#ffffff" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta httpEquiv="Content-Language" content="en" />
-      <meta
-        name="description"
-        content="React 2025 – Build applications from the future, today."
-      />
-      <meta
-        name="og:description"
-        content="React 2025 – Build applications from the future, today."
-      />
+      <meta name="description" content="BSale store – test." />
+      <meta name="og:description" content="Bsale store - test." />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="@leeerob" />
-      <meta
-        name="og:title"
-        content="React 2025 – Build applications from the future, today."
-      />
+      <meta name="twitter:site" content="@jncarloschara" />
+      <meta name="og:title" content="BSale store - test." />
       <meta
         name="twitter:image"
         content="https://react-2025-docs.vercel.app/og.png"
@@ -47,8 +38,12 @@ export default {
         name="og:image"
         content="https://react-2025-docs.vercel.app/og.png"
       />
-      <meta name="apple-mobile-web-app-title" content="React 2025" />
-      <link href="/favicon.ico" rel="shortcut icon" />
+      <meta name="apple-mobile-web-app-title" content="BSale store - test." />
+      <link
+        rel="shortcut icon"
+        href="https://dojiw2m9tvv09.cloudfront.net/16738/2/favicon.ico?268"
+        type="image/x-icon"
+      />
     </>
   )
 }

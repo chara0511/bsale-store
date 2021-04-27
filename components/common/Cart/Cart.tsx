@@ -13,8 +13,30 @@ import {
 import { BagIcon } from '@/components/icons'
 import { PrimaryButton, RoundedButton } from '@/components/button'
 import { Divider } from '@chakra-ui/layout'
+import { CartItem } from '@/components/items'
 
-const Cart: FC = ({ children }) => {
+const products = [
+  {
+    category: 1,
+    discount: 20,
+    id: 5,
+    name: 'ENERGETICA MR BIG',
+    price: 1490,
+    url_image:
+      'https://dojiw2m9tvv09.cloudfront.net/11132/product/misterbig3308256.jpg'
+  },
+  {
+    category: 1,
+    discount: 20,
+    id: 6,
+    name: 'ENERGETICA MR BIG',
+    price: 1490,
+    url_image:
+      'https://dojiw2m9tvv09.cloudfront.net/11132/product/misterbig3308256.jpg'
+  }
+]
+
+const Cart: FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = useRef<any | undefined>()
 
@@ -42,7 +64,7 @@ const Cart: FC = ({ children }) => {
             <Divider orientation="horizontal" />
 
             <DrawerBody>
-              {children}
+              <CartItem products={products} />
             </DrawerBody>
 
             <DrawerFooter>

@@ -116,4 +116,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Contact
 
 - GitHub [@jcarlos0511](https://github.com/jcarlos0511)
-- Twitter [@jncarloschara](https://twitter.com/jncarlos0511)
+- Twitter [@jncarloschara](https://twitter.com/jncarloschara)
