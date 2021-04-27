@@ -23,22 +23,6 @@ const UserBar: FC = () => {
       <WrapItem>
         <MenuItem />
       </WrapItem>
-
-      <WrapItem>
-        <RoundedButton
-          ariaLabel="Toggle"
-          handler={toggleColorMode}
-          icon={
-            colorMode === 'light'
-              ? (
-              <MoonIcon width="18" height="22"/>
-                )
-              : (
-              <SunIcon width="18" height="22" />
-                )
-          }
-        />
-      </WrapItem>
     </Wrap>
   )
 }
