@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { FC, useEffect } from 'react'
+import { FC, useEffect, useState } from 'react'
 
 import { Box, Flex, Heading, Text } from '@chakra-ui/layout'
 import { Image } from '@chakra-ui/image'
@@ -8,14 +8,25 @@ import { PRODUCT } from '@/assets/models'
 import { useDisclosure } from '@chakra-ui/hooks'
 import { Fade } from '@chakra-ui/transition'
 
+import { useCart } from 'context/cart-context'
 import { PrimaryButton } from '@/components/button'
+import { addToCart } from '@/lib/cart'
 
-const Product: FC<PRODUCT> = ({ name, url_image, price }) => {
+const Product: FC<PRODUCT> = ({ id, name, url_image, price }) => {
+  const { addProductToCart } = useCart()
+  const [loading, setLoading] = useState(false)
   const { isOpen, onToggle } = useDisclosure()
 
   useEffect(() => {
     onToggle()
   }, [])
+
+  const handleAddProductToCart = async (): Promise<void> => {
+    setLoading(true)
+    const product = await addToCart(id)
+    addProductToCart(...product)
+    return setLoading(false)
+  }
 
   return (
     <>
@@ -36,7 +47,7 @@ const Product: FC<PRODUCT> = ({ name, url_image, price }) => {
             height="475px"
             m="auto"
             objectFit="contain"
-            transform= 'scale(1.10)'
+            transform="scale(1.10)"
           />
         </Box>
       </Fade>
@@ -82,8 +93,9 @@ const Product: FC<PRODUCT> = ({ name, url_image, price }) => {
         </Box>
 
         <PrimaryButton
-          name="Agregar al Carrito"
-          handler={() => console.log('Agregar producto al carrito')}
+          name={loading ? 'cargando' : 'agregar al carrito'}
+          isDisabled={!!loading}
+          handler={handleAddProductToCart}
         />
       </Flex>
     </>

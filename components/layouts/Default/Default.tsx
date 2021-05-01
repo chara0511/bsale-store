@@ -31,6 +31,7 @@ const DefaultLayout: FC = ({ children }) => {
         py={['7rem', '7rem', '5rem']}
         px="1rem"
         position="relative"
+        justifyContent="center"
       >
         {children}
       </Container>

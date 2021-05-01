@@ -1,10 +1,13 @@
+import { PRODUCT } from '@/assets/models'
+
 const baseURL = process.env.API_URL
 
 export const fetcherEntries = async (
   endpoint: string,
   q?: string | string[],
   sort?: string | string[]
-): Promise<any> => {
+): Promise<PRODUCT[]> => {
+  // improve this
   const url =
     q !== undefined && sort !== undefined
       ? `${String(baseURL)}/${endpoint}?q=${String(q)}&sort=${String(sort)}`
@@ -14,13 +17,10 @@ export const fetcherEntries = async (
           ? `${String(baseURL)}/${endpoint}?sort=${String(sort)}`
           : `${String(baseURL)}/${endpoint}`
 
-  const res = await fetch(url)
-  return await res.json()
+  return await (await fetch(url)).json()
 }
 
-export const fetcherEntry = async (endpoint: string): Promise<any> => {
+export const fetcherEntry = async (endpoint: string): Promise<PRODUCT[]> => {
   const url = `${String(baseURL)}/${endpoint}`
-
-  const res = await fetch(url)
-  return await res.json()
+  return await (await fetch(url)).json()
 }
