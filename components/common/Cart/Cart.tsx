@@ -25,6 +25,7 @@ import { PRODUCT } from '@/assets/models'
 import { useCart } from 'context/cart-context'
 import { BagIcon } from '@/components/icons'
 import { PrimaryButton, RoundedButton } from '@/components/button'
+
 import { CartItem } from '@/components/items'
 import {
   calculateDiscount,
