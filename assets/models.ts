@@ -15,6 +15,7 @@ export interface PRODUCT {
   price: number
   discount: number
   category: number
+  amount: number
 }
 
 export interface PAGINATE {

@@ -9,7 +9,7 @@ import { Product, ProductError, ProductSkeleton } from '@/components/common'
 // Page with dynamic routes, getStaticPaths only runs at build time on server-side.
 // => https://nextjs.org/docs/basic-features/data-fetching#getstaticpaths-static-generation
 export const getStaticPaths: GetStaticPaths = async () => {
-  const products: PRODUCT[] = await fetcherEntries('api/products')
+  const products = await fetcherEntries('api/products')
 
   // Get the paths we want to pre-render based on products conditionally.
   const paths = Array.isArray(products)
@@ -18,7 +18,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }))
     : [
         {
-          params: { id: '5' }
+          params: { id: '5' } // value by default to passing error
         }
       ]
 
@@ -31,7 +31,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 // It won't be called on client-side, so you can even do direct database queries.
 // => https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const product: PRODUCT[] = await fetcherEntry(`api/products/${String(params?.id)}`)
+  const product = await fetcherEntry(`api/products/${String(params?.id)}`)
 
   return {
     props: {
