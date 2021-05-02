@@ -31,7 +31,7 @@ import {
   calculateSubTotal,
   getTotalProductsInCart
 } from '@/lib/cart'
-
+        
 const Cart: FC = () => {
   const { cartProducts } = useCart()
   const { isOpen, onOpen, onClose } = useDisclosure()
