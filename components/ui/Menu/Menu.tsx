@@ -13,6 +13,7 @@ import {
   IconButton,
   Image,
   Link,
+  useColorModeValue,
   useDisclosure
 } from '@chakra-ui/react'
 import { HamburgerIcon } from '@chakra-ui/icons'
@@ -29,6 +30,7 @@ const Menu: FC<{
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = useRef<any | undefined>()
+  const bg = useColorModeValue('gray.100', 'gray.800')
 
   return (
     <>
@@ -38,6 +40,7 @@ const Menu: FC<{
          {/* MOBILE / TABLET */}
           <IconButton
             position="fixed"
+            backgroundColor={bg}
             top={36}
             left={0}
             zIndex={49}
@@ -47,7 +50,7 @@ const Menu: FC<{
             aria-label="Menu"
             borderRightRadius="full"
             borderWidth="1px"
-            borderColor="gray.300"
+            borderColor="gray.200"
             borderStyle="solid"
             icon={<HamburgerIcon w="22px" h="22px" />}
           />
@@ -80,7 +83,6 @@ const Menu: FC<{
                         size="md"
                         lineHeight="tight"
                         w="fit-content"
-                        color="blackAlpha.700"
                         isTruncated
                       >
                         Store

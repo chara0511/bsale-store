@@ -12,6 +12,7 @@ const initialState: STATE = {
 
 type ACTION =
   | { type: 'ADD PRODUCT', payload: PRODUCT }
+  | { type: 'DECREASE AMOUNT', payload: PRODUCT }
   | { type: 'REMOVE PRODUCT', payload: PRODUCT }
 
 const CARTContext = createContext(initialState)
@@ -42,6 +43,19 @@ function cartReducer (state: STATE, action: ACTION): STATE {
       }
     }
 
+    case 'DECREASE AMOUNT': {
+      return {
+        ...state,
+        cartProducts: state.cartProducts.reduce<PRODUCT[]>((acc, curr) => {
+          if (curr.id === action.payload.id) {
+            if (curr.amount === 1) return acc
+            return [...acc, { ...curr, amount: curr.amount - 1 }]
+          }
+          return [...acc, curr]
+        }, [])
+      }
+    }
+
     case 'REMOVE PRODUCT': {
       return {
         ...state,
@@ -66,6 +80,9 @@ export const CARTProvider: FC = (props) => {
       payload: product
     })
 
+  const decreaseAmount = (product: PRODUCT): void =>
+    dispatch({ type: 'DECREASE AMOUNT', payload: product })
+
   const removeProductFromCart = (product: PRODUCT): void =>
     dispatch({
       type: 'REMOVE PRODUCT',
@@ -73,7 +90,12 @@ export const CARTProvider: FC = (props) => {
     })
 
   const value = useMemo(
-    () => ({ ...state, addProductToCart, removeProductFromCart }),
+    () => ({
+      ...state,
+      addProductToCart,
+      decreaseAmount,
+      removeProductFromCart
+    }),
     [state]
   )
 

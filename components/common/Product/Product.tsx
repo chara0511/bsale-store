@@ -10,9 +10,15 @@ import { Fade } from '@chakra-ui/transition'
 
 import { useCart } from 'context/cart-context'
 import { PrimaryButton } from '@/components/button'
-import { addToCart } from '@/lib/cart'
 
-const Product: FC<PRODUCT> = ({ id, name, url_image, price }) => {
+const Product: FC<PRODUCT> = ({
+  id,
+  name,
+  url_image,
+  price,
+  discount,
+  category
+}) => {
   const { addProductToCart } = useCart()
   const [loading, setLoading] = useState(false)
   const { isOpen, onToggle } = useDisclosure()
@@ -21,11 +27,14 @@ const Product: FC<PRODUCT> = ({ id, name, url_image, price }) => {
     onToggle()
   }, [])
 
-  const handleAddProductToCart = async (): Promise<void> => {
+  const handleAddProductToCart = (): void => {
     setLoading(true)
-    const product = await addToCart(id)
-    addProductToCart(...product)
-    return setLoading(false)
+
+    // simulate
+    setTimeout(() => {
+      addProductToCart({ id, name, url_image, price, discount, category })
+      return setLoading(false)
+    }, 200)
   }
 
   return (
