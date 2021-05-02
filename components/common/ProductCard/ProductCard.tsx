@@ -5,10 +5,8 @@ import { useDisclosure } from '@chakra-ui/hooks'
 import { Box, Flex, Heading, Link, Stack, Text } from '@chakra-ui/layout'
 import { Image } from '@chakra-ui/image'
 import { ScaleFade } from '@chakra-ui/transition'
-import { IconButton } from '@chakra-ui/button'
 
 import { PRODUCT } from '@/assets/models'
-import { BagIcon } from '@/components/icons'
 
 const ProductCard: FC<PRODUCT> = ({ id, name, url_image, price }) => {
   const { isOpen, onToggle } = useDisclosure()
@@ -85,29 +83,6 @@ const ProductCard: FC<PRODUCT> = ({ id, name, url_image, price }) => {
           </ScaleFade>
         </Link>
       </NextLink>
-
-      {/* Button para agregar el producto al carrito */}
-      <IconButton
-        aria-label="Agregar al carrito"
-        onClick={() => console.log('added')}
-        position="absolute"
-        top={0}
-        right={0}
-        backgroundColor="blackAlpha.900"
-        borderRadius="none"
-        color="whiteAlpha.900"
-        variant="ghost"
-        _hover={{
-          backgroundColor: 'blackAlpha.800'
-        }}
-        _active={{
-          transform: 'scale(0.95)',
-          backgroundColor: 'blackAlpha.800'
-        }}
-        icon={
-          <BagIcon fill="none" stroke="currentColor" width="18" height="22" />
-        }
-      />
     </Box>
   )
 }

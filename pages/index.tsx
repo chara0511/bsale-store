@@ -49,6 +49,7 @@ const IndexPage: FC<{
         </>
           )
         : (
+          // handle error
         <MenuSkeleton />
           )}
 
@@ -61,6 +62,7 @@ const IndexPage: FC<{
         </ProductGrid>
           )
         : (
+          // handle error
         <>
           <ProductError {...products} />
           <ProductGrid>
