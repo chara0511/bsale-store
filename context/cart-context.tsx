@@ -25,7 +25,7 @@ function cartReducer (state: STATE, action: ACTION): STATE {
         (cartProduct) => cartProduct.id === action.payload.id
       )
 
-      if (isItemInCart != null) {
+      if (isItemInCart) {
         return {
           ...state,
           cartProducts: state.cartProducts.map((cartProduct) =>
